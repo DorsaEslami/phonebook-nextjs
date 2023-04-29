@@ -6,8 +6,19 @@ import "reflect-metadata";
 import { ContactDeleteOutputDTO } from '@/dtos/contactDeleteOutputDTO';
 import { ContactPostInputDTO } from '@/dtos/contactPostInputDTO';
 import { ContactPutInputDTO } from '@/dtos/ContactPutInputDTO';
+import { ContactLoginOutputDTO } from '@/dtos/contactLoginOutputDTO';
+
 @injectable()
 export class ContactService implements IContactService {
+  login = async (): Promise<ContactLoginOutputDTO> => {
+    var url = 'https://dummyjson.com/auth/login';
+    var result = await axios.post<ContactLoginOutputDTO>(url,
+      {
+        username: 'kminchelle',
+        password: '0lelplR',
+      });
+    return result.data;
+  }
 
   getContact = async (): Promise<ContactOutputDTO> => {
     var url = 'https://dummyjson.com/users';

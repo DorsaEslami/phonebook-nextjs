@@ -1,0 +1,43 @@
+@use "sass:map";
+@use '../../css/colors';
+
+.loading {
+  width: 100%;
+  height: 100%;
+
+  .loading-div {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 52px;
+  }
+
+  .loading-div .ant-spin-dot-item {
+    background-color: map.get(colors.$light-theme, 'primary');
+  }
+
+  .loading-img {
+    width: 359.38px;
+    height: 359.38px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 60px;
+  }
+
+  .loading-text {
+    width: fit-content;
+    height: 36px;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 150%;
+    text-align: center;
+    color: map.get(colors.$light-theme, 'black');
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 29.5px;
+    padding-left: 35px;
+  }
+}
