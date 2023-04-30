@@ -33,9 +33,9 @@
 .container .mainContentRow .formCol .welcomeTitle {
   width: 100%;
   height: 20%;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
   margin: 0;
-  padding-left: 30%;
   font-size: 1.5rem;
   font-weight: 600;
   color: #0F1E27;
@@ -45,38 +45,39 @@
   height: 80%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   padding-top: 10%;
 }
-.container .mainContentRow .formCol .form .ant-form-item .ant-form-item-label > label {
-  font-size: 0.875rem;
-  width: 100%;
-}
-.container .mainContentRow .formCol .form .ant-btn > span {
-  font-weight: 600;
-  font-size: 0.75rem;
-}
-.container .mainContentRow .formCol .form .ant-form-item {
+.container .mainContentRow .formCol .form div[class~=ant-form-item] {
   width: 100%;
   margin-bottom: 26px;
 }
-.container .mainContentRow .formCol .form .ant-row {
+.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] {
   width: 100%;
 }
-.container .mainContentRow .formCol .form .ant-form-item-label {
-  width: 25%;
+.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-label] {
+  width: max(25%, 100px);
   text-align: left;
 }
-.container .mainContentRow .formCol .form .ant-form-item-control {
-  width: 75%;
-}
-.container .mainContentRow .formCol .form .ant-form-item-control .ant-form-item-control-input {
+.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-label] > label {
+  font-size: 0.875rem;
   width: 100%;
 }
-.container .mainContentRow .formCol .form .ant-form-item-control .ant-form-item-control-input .ant-form-item-control-input-content {
+.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-control] {
+  width: auto;
+  margin-left: 10px;
+}
+.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-control] div[class~=ant-form-item-control-input] {
+  width: 100%;
+}
+.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-control] div[class~=ant-form-item-control-input] div[class~=ant-form-item-control-input-content] {
   width: 100%;
 }
 .container .mainContentRow .formCol .form .submitButton {
-  width: 75%;
+  width: 100%;
   margin-top: 4%;
+}
+.container .mainContentRow .formCol .form .submitButton > span {
+  font-weight: 600;
+  font-size: 1rem;
 }/*# sourceMappingURL=login.module.css.map */

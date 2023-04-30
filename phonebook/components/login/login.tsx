@@ -5,25 +5,25 @@ import Styles from '../../styles/components/login/login.module.scss';
 import Notification from "../shared/notification/notification";
 /* #endregion */
 
-const Login = (props: any): JSX.Element => {
-  console.log(props)
+const Login = (): JSX.Element => {
+
   const [username, setUsername] = useState<string>("dorsa");
   const [password, setPassword] = useState<string>("dorsa12345");
 
   const login = () => {
     localStorage.setItem('token', 'dorsa');
-    // navigate("/dashboard");
+    //  navigate("/dashboard");
     Notification({ message: 'Welcome to phonebook app.' });
   }
 
   return (
     <div className={Styles.container}>
       <Row className={Styles.mainContentRow}>
-        <Col md={0} lg={12} xl={10} xxl={9} className={Styles.imageCol}>
+        <Col md={0} lg={12} xl={12} xxl={11} className={Styles.imageCol}>
           <img src="../img/login.png" alt="login" className={Styles.loginImage} />
         </Col>
-        <Col md={0} lg={0} xl={1} xxl={3}></Col>
-        <Col md={24} lg={12} xl={13} xxl={12} className={Styles.formCol}>
+        <Col md={0} lg={0} xl={1} xxl={2}></Col>
+        <Col md={24} lg={12} xl={11} xxl={11} className={Styles.formCol}>
           <p className={Styles.welcomeTitle}>Welcome to Phonebook app</p>
           <Form className={Styles.form} onFinish={login} >
             <Form.Item
