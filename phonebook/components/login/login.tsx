@@ -1,12 +1,12 @@
 /* #region  [- import -] */
 import { Form, Row, Col, Input, Button } from "antd";
 import { ChangeEvent, useState } from "react"
-import './login.css';
-import Notification from "../shared/components/notification/notification";
+import Styles from '../../styles/components/login/login.module.scss';
+import Notification from "../shared/notification/notification";
 /* #endregion */
 
-const Login = (): JSX.Element => {
-
+const Login = (props: any): JSX.Element => {
+  console.log(props)
   const [username, setUsername] = useState<string>("dorsa");
   const [password, setPassword] = useState<string>("dorsa12345");
 
@@ -17,15 +17,15 @@ const Login = (): JSX.Element => {
   }
 
   return (
-    <div className="login-container">
-      <Row className="main-content-row">
-        <Col md={0} lg={12} xl={10} xxl={9} className='login-image-col'>
-          <img src="../img/login.png" alt="login" className="login-image" />
+    <div className={Styles.container}>
+      <Row className={Styles.mainContentRow}>
+        <Col md={0} lg={12} xl={10} xxl={9} className={Styles.imageCol}>
+          <img src="../img/login.png" alt="login" className={Styles.loginImage} />
         </Col>
         <Col md={0} lg={0} xl={1} xxl={3}></Col>
-        <Col md={24} lg={12} xl={13} xxl={12} className='login-form-col'>
-          <p className="welcome-title">Welcome to Phonebook app</p>
-          <Form className='login-form' onFinish={login} >
+        <Col md={24} lg={12} xl={13} xxl={12} className={Styles.formCol}>
+          <p className={Styles.welcomeTitle}>Welcome to Phonebook app</p>
+          <Form className={Styles.form} onFinish={login} >
             <Form.Item
               label="Username"
               name="username"
@@ -64,7 +64,7 @@ const Login = (): JSX.Element => {
             >
               <Input.Password name="password" value={password} allowClear={true} onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
             </Form.Item>
-            <Button type="primary" htmlType="submit" className="login-submit-button">Login</Button>
+            <Button type="primary" htmlType="submit" className={Styles.submitButton}>Login</Button>
           </Form>
         </Col>
       </Row>

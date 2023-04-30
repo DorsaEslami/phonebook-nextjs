@@ -1,23 +1,13 @@
 import Head from 'next/head'
-import { Montserrat } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import Link from 'next/link'
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-})
+import Login from '@/components/login/login'
 
 export default function Home() {
   return (
     <>
-
       <Head>
-        <title>Phonebook App</title>
-        <meta name="description" content="Phonebook app" />
+        <title>Login to Phonebook App</title>
       </Head>
-      <main >
-        <span>tests</span>
-      </main>
+      <Login />
     </>
   )
 }
