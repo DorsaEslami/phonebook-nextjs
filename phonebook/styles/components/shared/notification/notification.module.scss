@@ -16,7 +16,7 @@
     background-color: #f87b7c !important;
   }
 
-  .ant-notification-notice-message {
+  div[class~=ant-notification-notice-message] {
     font-family: 'Montserrat' !important;
     color: map.get(theme.$light-theme, 'black');
     font-weight: 600;
@@ -26,11 +26,11 @@
     color: map.get(theme.$light-theme, 'black');
   }
 
-  .ant-notification-notice-icon {
+  span[class~=ant-notification-notice-icon] {
     font-size: 1.25rem;
   }
 
-  .ant-notification-notice-close {
+  [class~=ant-notification-notice-close] {
     top: 12px;
     inset-inline-end: 5px;
     color: map.get(theme.$light-theme, 'black');

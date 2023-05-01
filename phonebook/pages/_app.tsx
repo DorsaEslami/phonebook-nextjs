@@ -1,7 +1,9 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { ConfigProvider } from 'antd'
+import { ConfigProvider } from 'antd';
+import { Provider } from "react-redux";
+import store from '../store/config/configureStore';
 import { Montserrat } from 'next/font/google'
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -41,7 +43,9 @@ export default function App({ Component, pageProps }: AppProps) {
           colorSuccess: defaultData.colorSuccess
         }
       }}>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </ConfigProvider>
 
 

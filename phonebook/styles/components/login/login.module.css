@@ -56,7 +56,7 @@
   width: 100%;
 }
 .container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-label] {
-  width: max(25%, 100px);
+  width: max(25%, 90px);
   text-align: left;
 }
 .container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-label] > label {

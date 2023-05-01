@@ -1,9 +1,21 @@
 @use "sass:map";
-@use '../../../theme';
+@use '../../theme';
+
+.dashboard {
+  width: 100%;
+  height: 100%;
+  background-color: map.get(theme.$light-theme, 'background');
+}
+
+.dashboardContent {
+  width: 100%;
+  height: calc(100% - 60px);
+  background-color: map.get(theme.$light-theme, 'background');
+}
 
 .loading {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 60px);
 
   .loadingDiv {
     width: 24px;
@@ -12,11 +24,12 @@
     margin-left: auto;
     margin-right: auto;
     padding-top: 52px;
+
+    i[class~=ant-spin-dot-item] {
+      background-color: map.get(theme.$light-theme, 'primary');
+    }
   }
 
-  i[class~=ant-spin-dot-item] {
-    background-color: map.get(theme.$light-theme, 'primary');
-  }
 
   .loadingImg {
     width: 359.38px;
