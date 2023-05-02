@@ -116,19 +116,17 @@ const DefaultContent = (): JSX.Element => {
 
   /* #region  [- return -] */
   return (
-    <Row className='default-content'>
-      <Col className='column-chart-col' md={24} lg={12} xl={12} xxl={12}>
-        <Column {...columnChartConfig} className='column-chart' />
+    <main className={Styles.main}>
+      <Col className={Styles.columnChartCol} md={24} lg={12} xl={12} xxl={12}>
+        <Column {...columnChartConfig} className={Styles.columnChart} />
       </Col>
-      <Col className='pie-chart-col' md={24} lg={12} xl={12} xxl={12}>
-        <Pie  {...pieChartConfig} className='pie-chart' />
-        <Card title="Report View" className='description-card'>
+      <Col className={Styles.pieChartCol} md={24} lg={12} xl={12} xxl={12}>
+        <Pie  {...pieChartConfig} className={Styles.pieChart} />
+        <Card title="Report View" className={Styles.descriptionCard}>
           <p>Lorem ipsum dolor sit amet. Sed illo voluptatem rem ipsa excepturi aut amet fugit ut sint asperiores ut dolorem nisi ut reiciendis reiciendis quo porro earum. Et blanditiis assumenda et vitae accusantium sed dignissimos provident ut enim voluptatem et nulla numquam aut odio ducimus. Sed velit impedit et voluptate iure qui mollitia voluptas et ratione alias ut ducimus incidunt aut fuga nemo ea quod voluptatibus.</p>
         </Card>
       </Col>
-
-
-    </Row>
+    </main>
   );
   /* #endregion */
 

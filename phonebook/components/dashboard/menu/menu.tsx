@@ -6,6 +6,7 @@ import Styles from '../../../styles/components/dashboard/menu/menu.module.scss';
 import { SelectInfo } from '../../../node_modules/rc-menu/lib/interface';
 import { useAppDispatch } from '../../../store/config/configureStore';
 import { resetContacts } from '../../../store/reducers/contactSlice';
+import { useRouter } from 'next/router';
 
 /* #region  [- interface -] */
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 /* #endregion */
 const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
   const dispatch = useAppDispatch();
+  const router = useRouter()
   /* #region  [- items -] */
   const items: MenuProps['items'] = [
 
@@ -30,7 +32,7 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
       key: 'Profile',
       icon: <ProfileIcon />,
       className: Styles.profileSpan,
-      popupClassName: "sub-menu-popup",
+      popupClassName: Styles.subMenuPopup,
       popupOffset: [-165, 5],
       children: [
         {
@@ -38,7 +40,7 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
           key: 'change-password',
           icon: <LockOutlined />,
           onClick: () => {
-            // navigate('/changePassword');
+            router.push('/changePassword');
           }
         },
         {
@@ -48,7 +50,7 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
           onClick: () => {
             dispatch(resetContacts());
             localStorage.clear();
-            // navigate('/login');
+            router.push('/');
           }
         },
       ]
@@ -58,7 +60,7 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
   /* #endregion */
 
   return (
-    <div className={Styles.navbar}>
+    <nav className={Styles.nav}>
       <img className={Styles.logo} src='../img/menu-logo.png' alt="loading" />
       <div className={Styles.divider}></div>
       <AntdMenu
@@ -70,7 +72,7 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
         selectedKeys={[]}
       >
       </AntdMenu>
-    </div >
+    </nav >
   )
 }
 export default Menu; 

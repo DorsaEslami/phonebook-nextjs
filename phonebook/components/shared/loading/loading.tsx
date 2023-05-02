@@ -8,11 +8,11 @@ const Loading = (): JSX.Element => {
 
   /* #region  [- return -] */
   return (
-    <div className={Styles.loading}>
-      <div className={Styles.loadingDiv}><Spin /></div>
+    <figure className={Styles.figure} >
+      <Spin className={Styles.spin} />
       <img className={Styles.loadingImg} src='../img/loading.png' alt="loading" />
-      <div className={Styles.loadingText}>Loading....</div>
-    </div>
+      <figcaption className={Styles.figcaption}>Loading....</figcaption>
+    </figure>
   );
   /* #endregion */
 

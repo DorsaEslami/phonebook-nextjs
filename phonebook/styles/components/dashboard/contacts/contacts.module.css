@@ -1,11 +1,12 @@
-.contacts-container {
+.main {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   background-color: #F2F5F8;
   padding: 20px;
 }
-.contacts-container .header {
+
+.header {
   width: 100%;
   height: 50px;
   box-sizing: border-box;
@@ -22,22 +23,26 @@
   -o-border-radius: 8px;
   font-size: 1.25rem;
 }
-.contacts-container .header .title {
+
+.title {
   width: 25%;
   font-weight: 800;
   font-family: "Montserrat";
 }
-.contacts-container .header .tool {
+
+.searchSection {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   width: 75%;
 }
-.contacts-container .header .tool .search-input {
+
+.searchInput {
   width: 30%;
   margin-right: 5px;
 }
-.contacts-container .content {
+
+.contactsSection {
   box-sizing: border-box;
   width: 100%;
   height: calc(100% - 50px - 15px);
@@ -53,13 +58,13 @@
   border-radius: 8px;
   overflow-y: scroll;
 }
-.contacts-container .content::-webkit-scrollbar {
+.contactsSection::-webkit-scrollbar {
   width: 3px;
 }
-.contacts-container .content::-webkit-scrollbar-track {
+.contactsSection::-webkit-scrollbar-track {
   background: #F2F5F8;
 }
-.contacts-container .content::-webkit-scrollbar-thumb {
+.contactsSection::-webkit-scrollbar-thumb {
   background: #127591;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -67,70 +72,71 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-.contacts-container .content::-webkit-scrollbar-thumb:hover {
+.contactsSection::-webkit-scrollbar-thumb:hover {
   background: #127591;
 }
-.contacts-container .content::-webkit-scrollbar-track-piece:end {
+.contactsSection::-webkit-scrollbar-track-piece:end {
   margin-bottom: 20px;
 }
-.contacts-container .content::-webkit-scrollbar-track-piece:start {
+.contactsSection::-webkit-scrollbar-track-piece:start {
   margin-top: 20px;
 }
-.contacts-container .content .card {
+
+.card {
   width: 23%;
   height: -moz-fit-content;
   height: fit-content;
   box-shadow: 0px 0px 13px 2px rgb(230, 230, 230);
 }
-.contacts-container .content .card .description {
+
+.description {
   box-sizing: border-box;
   width: 100%;
   padding-left: 56px;
   word-wrap: break-word;
 }
-.contacts-container .content .card .description p {
+.description p {
   width: 100%;
 }
 
-.delete-modal {
+.deleteModal {
   width: 45% !important;
 }
-.delete-modal .ant-modal-content {
+.deleteModal :global .ant-modal-content {
   background-color: #F2F5F8;
   height: 100%;
   width: 100% !important;
 }
-.delete-modal .ant-modal-content .ant-modal-body {
+.deleteModal :global .ant-modal-content :global .ant-modal-body {
   max-height: 50vh;
   overflow-y: auto;
 }
-.delete-modal .ant-modal-content .ant-modal-body p:first-child {
+.deleteModal :global .ant-modal-content :global .ant-modal-body p:first-child {
   font-size: 1rem;
-  font-weight: 900;
+  font-weight: 800;
 }
-.delete-modal .ant-modal-content .ant-modal-body p:nth-child(2), .delete-modal .ant-modal-content .ant-modal-body p:nth-child(3), .delete-modal .ant-modal-content .ant-modal-body p:nth-child(4), .delete-modal .ant-modal-content .ant-modal-body p:nth-child(5), .delete-modal .ant-modal-content .ant-modal-body p:nth-child(6) {
+.deleteModal :global .ant-modal-content :global .ant-modal-body p:nth-child(2), .deleteModal :global .ant-modal-content :global .ant-modal-body p:nth-child(3), .deleteModal :global .ant-modal-content :global .ant-modal-body p:nth-child(4), .deleteModal :global .ant-modal-content :global .ant-modal-body p:nth-child(5), .deleteModal :global .ant-modal-content :global .ant-modal-body p:nth-child(6) {
   margin: 0;
   font-size: 0.875rem;
   padding-left: 20px;
 }
-.delete-modal .ant-modal-content .ant-modal-body span:first-child {
-  color: red;
-}
-.delete-modal .ant-modal-content .ant-modal-footer {
+.deleteModal :global .ant-modal-content :global .ant-modal-footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-top: 20px;
 }
-.delete-modal .ant-modal-content .ant-modal-footer .button {
+
+.deleteModalButton {
   width: 130px;
 }
 
-.contact-drawer .ant-drawer-content-wrapper {
+.drawer :global .ant-drawer-content-wrapper {
   width: 40vw !important;
   height: 100vh;
 }
-.contact-drawer .contact-form {
+
+.form {
   width: 100%;
   height: 100%;
   display: flex;
@@ -138,56 +144,58 @@
   justify-content: space-between;
   align-items: flex-start;
 }
-.contact-drawer .contact-form .form-content {
+
+.formSection {
   width: 100%;
 }
-.contact-drawer .contact-form .form-content .ant-form-item-label {
+.formSection :global .ant-form-item-label {
   text-align: left;
 }
-.contact-drawer .contact-form .submit-button-form-item {
+
+.submitButtonFormItem {
   width: 100%;
 }
-.contact-drawer .contact-form .submit-button-form-item.ant-form-item {
+.submitButtonFormItem.ant-form-item {
   margin-bottom: 2px;
 }
-.contact-drawer .contact-form .submit-button-form-item .cancel-button {
+
+.cancelButton {
   width: 49%;
   margin-right: 2%;
 }
-.contact-drawer .contact-form .submit-button-form-item .submit-button {
+
+.submitButton {
   width: 49%;
 }
 
-.inform-modal {
+.informModal {
   width: 45% !important;
 }
-.inform-modal .ant-modal-content {
+.informModal :global .ant-modal-content {
   background-color: #F2F5F8;
   height: 100%;
   width: 100% !important;
 }
-.inform-modal .ant-modal-content .ant-modal-body {
+.informModal :global .ant-modal-content :global .ant-modal-body {
   max-height: 50vh;
   overflow-y: auto;
 }
-.inform-modal .ant-modal-content .ant-modal-body p:first-child {
+.informModal :global .ant-modal-content :global .ant-modal-body p:first-child {
   font-size: 1rem;
   font-weight: 900;
 }
-.inform-modal .ant-modal-content .ant-modal-body p:nth-child(2), .inform-modal .ant-modal-content .ant-modal-body p:nth-child(3), .inform-modal .ant-modal-content .ant-modal-body p:nth-child(4), .inform-modal .ant-modal-content .ant-modal-body p:nth-child(5) {
+.informModal :global .ant-modal-content :global .ant-modal-body p:nth-child(2), .informModal :global .ant-modal-content :global .ant-modal-body p:nth-child(3), .informModal :global .ant-modal-content :global .ant-modal-body p:nth-child(4), .informModal :global .ant-modal-content :global .ant-modal-body p:nth-child(5) {
   margin: 0;
   font-size: 0.875rem;
   padding-left: 20px;
 }
-.inform-modal .ant-modal-content .ant-modal-body span:first-child {
-  color: red;
-}
-.inform-modal .ant-modal-content .ant-modal-footer {
+.informModal :global .ant-modal-content :global .ant-modal-footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-top: 20px;
 }
-.inform-modal .ant-modal-content .ant-modal-footer .button {
+
+.informModalButton {
   width: 100%;
 }/*# sourceMappingURL=contacts.module.css.map */

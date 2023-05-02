@@ -1,4 +1,4 @@
-.container {
+.main {
   width: 100%;
   height: 100%;
   display: flex;
@@ -6,31 +6,37 @@
   justify-content: center;
   background-color: #eeeae5;
 }
-.container .mainContentRow {
+
+.section {
   width: 80%;
   height: 80%;
+  display: flex;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 0 44px 4px rgba(193, 185, 185, 0.75);
 }
-.container .mainContentRow .imageCol {
+
+.imageCol {
   width: 100%;
   height: 100%;
   border-radius: 8px 0 0 8px;
   background-color: #ffffff;
 }
-.container .mainContentRow .imageCol .loginImage {
+
+.loginImage {
   width: 100%;
   height: 100%;
 }
-.container .mainContentRow .formCol {
+
+.formCol {
   width: 100%;
   height: 100%;
   border-radius: 0 8px 8px 0;
   background-color: #ffffff;
   padding: 5%;
 }
-.container .mainContentRow .formCol .welcomeTitle {
+
+.welcomeTitle {
   width: 100%;
   height: 20%;
   display: flex;
@@ -40,7 +46,8 @@
   font-weight: 600;
   color: #0F1E27;
 }
-.container .mainContentRow .formCol .form {
+
+.form {
   width: 100%;
   height: 80%;
   display: flex;
@@ -48,36 +55,24 @@
   align-items: flex-start;
   padding-top: 10%;
 }
-.container .mainContentRow .formCol .form div[class~=ant-form-item] {
+
+.formItem {
   width: 100%;
   margin-bottom: 26px;
 }
-.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] {
-  width: 100%;
+.formItem :global .ant-form-item-label {
+  width: max(20%, 96px);
 }
-.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-label] {
-  width: max(25%, 90px);
-  text-align: left;
-}
-.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-label] > label {
+.formItem :global .ant-form-item-label > label {
   font-size: 0.875rem;
   width: 100%;
 }
-.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-control] {
-  width: auto;
-  margin-left: 10px;
-}
-.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-control] div[class~=ant-form-item-control-input] {
-  width: 100%;
-}
-.container .mainContentRow .formCol .form div[class~=ant-form-item] div[class~=ant-row] div[class~=ant-form-item-control] div[class~=ant-form-item-control-input] div[class~=ant-form-item-control-input-content] {
-  width: 100%;
-}
-.container .mainContentRow .formCol .form .submitButton {
+
+.submitButton {
   width: 100%;
   margin-top: 4%;
 }
-.container .mainContentRow .formCol .form .submitButton > span {
+.submitButton > span {
   font-weight: 600;
   font-size: 1rem;
 }/*# sourceMappingURL=login.module.css.map */

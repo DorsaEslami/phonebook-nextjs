@@ -1,16 +1,17 @@
-.default-content {
+.main {
+  display: flex;
   width: 100%;
   height: 100%;
   background-color: #F2F5F8;
   overflow-y: scroll;
 }
-.default-content::-webkit-scrollbar {
+.main::-webkit-scrollbar {
   width: 5px;
 }
-.default-content::-webkit-scrollbar-track {
+.main::-webkit-scrollbar-track {
   background: #F2F5F8;
 }
-.default-content::-webkit-scrollbar-thumb {
+.main::-webkit-scrollbar-thumb {
   background: #127591;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -18,16 +19,31 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-.default-content::-webkit-scrollbar-thumb:hover {
+.main::-webkit-scrollbar-thumb:hover {
   background: #127591;
 }
-.default-content::-webkit-scrollbar-track-piece:end {
+.main::-webkit-scrollbar-track-piece:end {
   margin-bottom: 30px;
 }
-.default-content::-webkit-scrollbar-track-piece:start {
+.main::-webkit-scrollbar-track-piece:start {
   margin-top: 30px;
 }
-.default-content .pie-chart-col {
+
+.columnChartCol {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 2%;
+}
+
+.columnChart {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100% !important;
+  padding: 1%;
+}
+
+.pieChartCol {
   width: 100%;
   height: 100%;
   display: flex;
@@ -35,27 +51,17 @@
   justify-content: center;
   align-items: center;
 }
-.default-content .pie-chart-col .pie-chart {
+
+.pieChart {
   width: 75%;
   height: 55% !important;
 }
-.default-content .pie-chart-col .description-card {
+
+.descriptionCard {
   width: 90%;
   height: auto;
 }
-.default-content .pie-chart-col .description-card .ant-card-head-title {
+.descriptionCard :global .ant-card-head-title {
   font-size: 1.125rem;
   font-weight: 800;
-}
-.default-content .column-chart-col {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding: 2%;
-}
-.default-content .column-chart-col .column-chart {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100% !important;
-  padding: 1%;
 }/*# sourceMappingURL=defaultContent.module.css.map */

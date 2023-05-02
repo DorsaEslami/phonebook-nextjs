@@ -1,22 +1,30 @@
 /* #region  [- import -] */
 import Head from 'next/head'
-import { Form, Row, Col, Input, Button } from "antd";
-import { ChangeEvent, useState } from "react"
+import { Form, Layout, Col, Input, Button } from "antd";
+import { useEffect, } from "react"
 import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
 import { IContactService } from "@/services/interfaces/IContactService";
 import container, { TYPES } from "@/inversify.config";
 import { ContactLoginOutputDTO } from "@/dtos/contactLoginOutputDTO";
 import { useRouter } from "next/router";
+const { Content } = Layout;
 /* #endregion */
-
 
 const Login = (): JSX.Element => {
 
   /* #region [- variables -] */
-  const router = useRouter()
-  const [username, setUsername] = useState<string>("dorsa");
-  const [password, setPassword] = useState<string>("dorsa12345");
+  const router = useRouter();
+  const [form] = Form.useForm();
+  /* #endregion */
+
+  /* #region [- setFieldsValue -] */
+  useEffect(() => {
+    form.setFieldsValue({
+      username: 'admin',
+      password: 'admin'
+    })
+  }, [])
   /* #endregion */
 
   /* #region [- login -] */
@@ -24,6 +32,7 @@ const Login = (): JSX.Element => {
     const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
     var response: ContactLoginOutputDTO = await contactService.login();
     if (response.token) {
+      localStorage.setItem('token', response.token);
       router.push('/dashboard');
       Notification({ message: 'Welcome to phonebook app.' });
     }
@@ -38,58 +47,59 @@ const Login = (): JSX.Element => {
     <Head>
       <title>Login to Phonebook App</title>
     </Head>
-    <div className={Styles.container}>
-      <Row className={Styles.mainContentRow}>
+    <main className={Styles.main}>
+      <section className={Styles.section}>
         <Col md={0} lg={12} xl={12} xxl={11} className={Styles.imageCol}>
           <img src="../img/login.png" alt="login" className={Styles.loginImage} />
         </Col>
         <Col md={0} lg={0} xl={1} xxl={2}></Col>
         <Col md={24} lg={12} xl={11} xxl={11} className={Styles.formCol}>
           <p className={Styles.welcomeTitle}>Welcome to Phonebook app</p>
-          <Form className={Styles.form} onFinish={login} >
+          <Form className={Styles.form} onFinish={login} form={form}  >
             <Form.Item
               label="Username"
               name="username"
-              initialValue={username}
+              className={Styles.formItem}
               rules={[
                 { required: true, message: 'Please input your username!' },
                 () => ({
                   validator(_, value) {
-                    if (value === 'dorsa') {
+                    if (value === 'admin') {
                       return Promise.resolve();
                     }
-                    return Promise.reject(new Error('Username is "dorsa".'));
+                    return Promise.reject(new Error('Username is "admin".'));
                   },
                 }),
               ]}
               hasFeedback
             >
-              <Input allowClear={true} name="username" value={username} onChange={(event: ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)} />
+              <Input allowClear={true} />
             </Form.Item>
             <Form.Item
               label="Password"
               name="password"
-              initialValue={password}
+              className={Styles.formItem}
               rules={[
                 { required: true, message: 'Please input your password!' },
                 () => ({
                   validator(_, value) {
-                    if (value === 'dorsa12345') {
+                    if (value === 'admin') {
                       return Promise.resolve();
                     }
-                    return Promise.reject(new Error('Password is "dorsa12345".'));
+                    return Promise.reject(new Error('Password is "admin".'));
                   },
                 }),
               ]}
               hasFeedback
             >
-              <Input.Password name="password" value={password} allowClear={true} onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
+              <Input.Password allowClear={true} />
             </Form.Item>
             <Button type="primary" htmlType="submit" className={Styles.submitButton}>Login</Button>
+
           </Form>
         </Col>
-      </Row>
-    </div>
+      </section>
+    </main>
   </>
   )
   /* #endregion */

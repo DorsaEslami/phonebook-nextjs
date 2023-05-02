@@ -1,3 +1,7 @@
+:root {
+  --font-family: 'montserrat';
+}
+
 * {
   box-sizing: border-box;
 }

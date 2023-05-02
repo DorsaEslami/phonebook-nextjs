@@ -1,8 +1,8 @@
 import Styles from '../../styles/components/changePassword/changePassword.module.scss';
 const ChangePassword = () => {
   return (
-    <div className={Styles.container}>
+    <main className={Styles.main}>
       <img src="../img/change-password.png" alt="Change Password" className={Styles.image} />
-    </div>)
+    </main>)
 }
 export default ChangePassword;

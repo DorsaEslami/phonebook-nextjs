@@ -2,41 +2,40 @@
 @use '../../../theme';
 
 
-.notification {
-  &.ant-notification-notice {
+.container {
+  &:global.ant-notification-notice {
     width: fit-content;
     padding: 12px 12px 12px 20px;
   }
 
-  &.ant-notification-notice-success {
+  &:global.ant-notification-notice-success {
     background-color: #8de8ab !important;
   }
 
-  &.ant-notification-notice-error {
+  &:global.ant-notification-notice-error {
     background-color: #f87b7c !important;
   }
 
-  div[class~=ant-notification-notice-message] {
-    font-family: 'Montserrat' !important;
+  :global .ant-notification-notice-message {
+    font-family: var(--font-family) !important;
     color: map.get(theme.$light-theme, 'black');
     font-weight: 600;
     font-size: 0.875rem !important;
     margin-bottom: 0 !important;
     margin-right: 10px;
-    color: map.get(theme.$light-theme, 'black');
   }
 
-  span[class~=ant-notification-notice-icon] {
-    font-size: 1.25rem;
+  :global .ant-notification-notice-icon {
+    font-size: 1.25rem !important;
   }
 
-  [class~=ant-notification-notice-close] {
-    top: 12px;
-    inset-inline-end: 5px;
-    color: map.get(theme.$light-theme, 'black');
+  :global .ant-notification-notice-close {
+    top: 12px !important;
+    inset-inline-end: 5px !important;
+    color: map.get(theme.$light-theme, 'black') !important;
 
     &:hover {
-      color: map.get(theme.$light-theme, 'black');
+      color: map.get(theme.$light-theme, 'black') !important;
     }
   }
 }

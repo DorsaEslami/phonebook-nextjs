@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../axios';
 import { injectable } from "inversify";
 import { ContactOutputDTO, Users } from '@/dtos/contactOutputDTO';
 import { IContactService } from '../interfaces/IContactService';

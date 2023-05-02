@@ -1,4 +1,4 @@
-.navbar {
+.nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -14,15 +14,17 @@
   -ms-border-radius: 0px 0px 20px 20px;
   -o-border-radius: 0px 0px 20px 20px;
 }
-.navbar div[class~=ant-menu-light] {
+.nav :global .ant-menu-light {
   color: #fff;
   background-color: #127591;
 }
-.navbar .logo {
+
+.logo {
   width: 42px;
   height: 40px;
 }
-.navbar .divider {
+
+.divider {
   width: 0px;
   height: 38px;
   background-color: #f2f5f8;
@@ -30,7 +32,8 @@
   margin-left: 40px;
   display: inline-block;
 }
-.navbar .menu {
+
+.menu {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -43,34 +46,49 @@
   margin-left: 24px;
   font-size: 0.875rem;
 }
-.navbar .menu [class~=ant-menu-submenu],
-.navbar .menu [class~=ant-menu-item],
-.navbar .menu [class~=ant-menu-submenu]:hover::after,
-.navbar .menu [class~=ant-menu-item]:hover::after {
+.menu :global .ant-menu-submenu,
+.menu :global .ant-menu-item,
+.menu :global .ant-menu-submenu:hover::after,
+.menu :global .ant-menu-item:hover::after {
   border-bottom-color: #127591;
 }
-.navbar .menu [class~=ant-menu-submenu-title]:hover,
-.navbar .menu [class~=ant-menu-item]:hover {
+.menu :global .ant-menu-submenu-title:hover,
+.menu :global .ant-menu-item:hover {
   color: #fff !important;
 }
-.navbar .menu [class~=ant-menu-title-content] {
+.menu :global .ant-menu-title-content {
   font-size: 0.875rem;
   font-weight: 600;
 }
-.navbar .menu .profileSpan {
+.menu .profileSpan {
   width: 28px;
   height: 28px;
   padding: 0;
   margin: 0;
   position: absolute;
   right: 30px;
-  top: 15px;
+  top: 15px !important;
 }
-.navbar .menu .profileSpan [class~=ant-menu-submenu-title] {
+.menu .profileSpan :global .ant-menu-submenu-title {
   width: 28px;
   height: 28px;
 }
-.navbar .menu .profileSpan [class~=anticon] {
+.menu .profileSpan :global .anticon {
   width: 28px;
   height: 28px;
+}
+
+.subMenuPopup :global .ant-menu-item {
+  color: #0F1E27 !important;
+  font-size: 0.875rem;
+}
+.subMenuPopup :global .ant-menu-item:is(:hover, :active) {
+  color: #0F1E27 !important;
+  background-color: #F2F5F8 !important;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
 }/*# sourceMappingURL=menu.module.css.map */

@@ -50,6 +50,8 @@ const Contacts = (): JSX.Element => {
   }
   /* #endregion */
 
+  /* #region [- methods -] */
+
   /* #region  [- onSearch -] */
   const onSearch = (value: string): void => {
     if (value === '') {
@@ -171,15 +173,17 @@ const Contacts = (): JSX.Element => {
   }
   /* #endregion */
 
+  /* #endregion */
+
   /* #region  [- return -] */
   return (
-    <div className="contacts-container">
-      <div className="header">
+    <main className={Styles.main}>
+      <header className={Styles.header}>
 
-        <span className='title'>Contact Management</span>
+        <span className={Styles.title}>Contact Management</span>
 
-        <div className='tool'>
-          <Search className='search-input' placeholder="type first name or last name" onSearch={onSearch} enterButton />
+        <section className={Styles.searchSection}>
+          <Search className={Styles.searchInput} placeholder="type first name or last name" onSearch={onSearch} enterButton />
           <Button type="primary" icon={<PlusOutlined />} onClick={() => setIsDrawerOpen(true)} />
           <Drawer
             title={id === undefined ? "Create a new contact" : "Edit Contact"}
@@ -187,7 +191,7 @@ const Contacts = (): JSX.Element => {
             onClose={onCloseDrawer}
             open={isDrawerOpen}
             destroyOnClose={true}
-            rootClassName='contact-drawer'
+            rootClassName={Styles.drawer}
           >
             <Form
               wrapperCol={{ span: 19 }}
@@ -195,10 +199,10 @@ const Contacts = (): JSX.Element => {
               form={form}
               name="form"
               onFinish={onFinish}
-              className='contact-form'
+              className={Styles.form}
               validateMessages={validateMessages}
             >
-              <div className='form-content'>
+              <section className={Styles.formSection}>
                 <Form.Item name={['contact', 'firstName']} label="First Name" rules={[{ required: true }]} hasFeedback>
                   <Input />
                 </Form.Item>
@@ -220,12 +224,12 @@ const Contacts = (): JSX.Element => {
                     <Radio value="Female">Female</Radio>
                   </Radio.Group>
                 </Form.Item>
-              </div>
-              <Form.Item className='submit-button-form-item' wrapperCol={{ span: 24 }}>
-                <Button type="primary" className='cancel-button' onClick={onCloseDrawer} >
+              </section>
+              <Form.Item className={Styles.submitButtonFormItem} wrapperCol={{ span: 24 }}>
+                <Button type="primary" className={Styles.cancelButton} onClick={onCloseDrawer} >
                   Cancel
                 </Button>
-                <Button type="primary" htmlType="submit" className='submit-button' >
+                <Button type="primary" htmlType="submit" className={Styles.submitButton} >
                   Submit
                 </Button>
               </Form.Item>
@@ -235,10 +239,10 @@ const Contacts = (): JSX.Element => {
             open={isInformModalOpen}
             onCancel={() => { setIsInformModalOpen(false) }}
             destroyOnClose={true}
-            className='inform-modal'
+            className={Styles.informModal}
             centered
             footer={[
-              <Button type='primary' size='large' className='button' key='informModalNoButton' onClick={() => setIsInformModalOpen(false)}>Ok</Button>
+              <Button type='primary' size='large' className={Styles.informModalButton} key='informModalNoButton' onClick={() => setIsInformModalOpen(false)}>Ok</Button>
             ]} >
             <p>Please note:</p>
             <p>'Dummyjson' is a fake data provider I used in this project.</p>
@@ -246,22 +250,22 @@ const Contacts = (): JSX.Element => {
             <p>Therefore, you won't be able to see any changes in contacts list.</p>
             <p>However, based on the notification you see on the bottom rigth side of the page you will be able to check if the process has been successfull or not.</p>
           </Modal>
-        </div>
+        </section>
 
-      </div>
-      <div className='content'>
+      </header>
+      <section className={Styles.contactsSection}>
         {contactsList.map((item: Users) =>
           <Card
             key={item.id}
             hoverable
-            className='card'
+            className={Styles.card}
             actions={[
               <EditOutlined key={'edit' + item.id} id={String(item.id)} onClick={() => onClickEditButton(item)} />,
               <DeleteOutlined key={'delete' + item.id} id={String(item.id)} onClick={() => onClickDeleteButton(item)} />,
             ]}
           >
             <Meta avatar={<Avatar alt="profile" src={item.image} size='large' />} title={item.firstName + ' ' + item.lastName} />
-            <div className='description'>
+            <div className={Styles.description}>
               <p>Phone:{' ' + item.phone}</p>
               <p>Email:{' ' + item.email}</p>
               <p>Age:{' ' + item.age}</p>
@@ -273,11 +277,11 @@ const Contacts = (): JSX.Element => {
           open={isDeleteModalOpen}
           onCancel={onCloseDeleteModal}
           destroyOnClose={true}
-          className='delete-modal'
+          className={Styles.deleteModal}
           centered
           footer={[
-            <Button type='primary' size='large' className='button' key='deleteModalYesButton' onClick={onClickDeleteButtonInModal}>Yes</Button>,
-            <Button type='primary' size='large' className='button' key='deleteModalNoButton' onClick={onCloseDeleteModal}>No</Button>
+            <Button type='primary' size='large' className={Styles.deleteModalButton} key='deleteModalYesButton' onClick={onClickDeleteButtonInModal}>Yes</Button>,
+            <Button type='primary' size='large' className={Styles.deleteModalButton} key='deleteModalNoButton' onClick={onCloseDeleteModal}>No</Button>
           ]} >
           <p>Are you sure you want to delete contact: {fullName}?</p>
           <p>Please note:</p>
@@ -286,8 +290,8 @@ const Contacts = (): JSX.Element => {
           <p>Therefore, you still will be able to see the deleted contact in contacts list.</p>
           <p>However, based on the notification you see on the bottom rigth side of the page you will be able to check if deleting has been successfull or not.</p>
         </Modal>
-      </div>
-    </div>
+      </section>
+    </main>
   )
   /* #endregion */
 }

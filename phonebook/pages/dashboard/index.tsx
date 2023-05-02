@@ -2,7 +2,7 @@
 import React, { FC, useState, Suspense } from "react";
 import Styles from '../../styles/components/dashboard/dashboard.module.scss';
 import Menu from '../../components/dashboard/menu/menu';
-import DashboardLoading from '../../components/dashboard/dashboardLoading';
+import DashboardLoading from '../../components/dashboard/dashboardLoading/dashboardLoading';
 import { SelectInfo } from 'rc-menu/lib/interface';
 const DefaultContent = React.lazy(() => import('../../components/dashboard/defaultContent/defaultContent'));
 const Contacts = React.lazy(() => import('./contacts'));
