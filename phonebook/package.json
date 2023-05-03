@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ant-design/plots": "^1.2.5",
+    "@ant-design/charts": "^1.4.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
@@ -20,6 +20,7 @@
     "eslint-config-next": "13.3.1",
     "inversify": "^6.0.1",
     "next": "13.3.1",
+    "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",

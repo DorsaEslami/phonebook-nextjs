@@ -6,8 +6,9 @@ import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
 import { IContactService } from "@/services/interfaces/IContactService";
 import container, { TYPES } from "@/inversify.config";
-import { ContactLoginOutputDTO } from "@/dtos/contactLoginOutputDTO";
+import { LoginOutputDTO } from "@/dtos/loginOutputDTO";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 const { Content } = Layout;
 /* #endregion */
 
@@ -29,16 +30,24 @@ const Login = (): JSX.Element => {
 
   /* #region [- login -] */
   const login = async () => {
-    const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
-    var response: ContactLoginOutputDTO = await contactService.login();
-    if (response.token) {
-      localStorage.setItem('token', response.token);
-      router.push('/dashboard');
-      Notification({ message: 'Welcome to phonebook app.' });
-    }
-    else {
-      Notification({ message: 'Something went wrong!', type: 'error' });
-    }
+    // const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
+    // var response: LoginOutputDTO = await contactService.login();
+    // if (response.token) {
+    //   localStorage.setItem('token', response.token);
+    //   router.push('/dashboard');
+    //   Notification({ message: 'Welcome to phonebook app.' });
+    // }
+    // else {
+    //   Notification({ message: 'Something went wrong!', type: 'error' });
+    // }
+    var fieldsValue: { username: string, password: String } = form.getFieldsValue();
+    const result = await signIn("credentials", {
+      username: fieldsValue.username,
+      password: fieldsValue.password,
+      redirect: true,
+      callbackUrl: '/dashboard'
+    });
+    console.log('result', result)
   }
   /* #endregion */
 

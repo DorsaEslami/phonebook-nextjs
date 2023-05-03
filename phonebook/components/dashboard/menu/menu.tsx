@@ -7,6 +7,8 @@ import { SelectInfo } from '../../../node_modules/rc-menu/lib/interface';
 import { useAppDispatch } from '../../../store/config/configureStore';
 import { resetContacts } from '../../../store/reducers/contactSlice';
 import { useRouter } from 'next/router';
+import { signOut } from 'next-auth/react';
+import { redirect } from 'next/dist/server/api-utils';
 
 /* #region  [- interface -] */
 interface Props {
@@ -49,8 +51,7 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
           icon: <PoweroffOutlined />,
           onClick: () => {
             dispatch(resetContacts());
-            localStorage.clear();
-            router.push('/');
+            signOut({ redirect: true, callbackUrl: '/' });
           }
         },
       ]

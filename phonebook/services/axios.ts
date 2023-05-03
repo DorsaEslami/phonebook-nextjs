@@ -4,10 +4,10 @@ const axiosInstance = axios.create();
 axios.interceptors.request.use(function (config: any) {
   config.headers.accept = 'text/plain';
   config.headers['Content-Type'] = 'application/json';
-  let token = localStorage.getItem('token');
-  if (token === null) {
-    window.location.replace('/');
-  }
+  // let token = session.data?.expires;
+  // if (token === null) {
+  //   window.location.replace('/');
+  // }
   return config;
 }, function (error: any) {
   return Promise.reject(error);

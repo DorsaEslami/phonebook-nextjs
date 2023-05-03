@@ -4,8 +4,9 @@ import Head from 'next/head'
 import { ConfigProvider } from 'antd';
 import { Provider } from "react-redux";
 import store from '../store/config/configureStore';
+import { SessionProvider } from "next-auth/react";
 import { Montserrat } from 'next/font/google';
-import Auth from '@/components/auth/auth';
+
 const montserrat = Montserrat({
   subsets: ['latin'],
 })
@@ -24,7 +25,11 @@ const defaultData: ThemeData = {
 };
 
 /* #endregion */
-export default function App({ Component, pageProps }: AppProps) {
+interface Props extends AppProps {
+  session: any
+}
+export default function App({ Component, pageProps, session }: Props) {
+  console.log(session)
   return (
     <>
       <Head>
@@ -32,21 +37,20 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="description" content="Phonebook app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ConfigProvider theme={{
-        token: {
-          borderRadius: defaultData.borderRadius,
-          colorPrimary: defaultData.colorPrimary,
-          fontFamily: defaultData.fontFamily,
-          colorSuccess: defaultData.colorSuccess
-        }
-      }}>
-        <Auth>
-          <Provider store={store}>
+      <SessionProvider session={session}>
+        <Provider store={store}>
+          <ConfigProvider theme={{
+            token: {
+              borderRadius: defaultData.borderRadius,
+              colorPrimary: defaultData.colorPrimary,
+              fontFamily: defaultData.fontFamily,
+              colorSuccess: defaultData.colorSuccess
+            }
+          }}>
             <Component {...pageProps} />
-          </Provider>
-        </Auth>
-      </ConfigProvider>
-
+          </ConfigProvider>
+        </Provider>
+      </SessionProvider>
 
     </>
   )
