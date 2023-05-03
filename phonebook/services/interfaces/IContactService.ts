@@ -8,9 +8,9 @@ import { APIResultDTO } from "@/dtos/apiResultDTO";
 
 export interface IContactService {
   login: () => Promise<APIResultDTO<LoginOutputDTO>>;
-  getContact: () => Promise<APIResultDTO<ContactOutputDTO>>;
-  getFilteredContacts: (searchValue: string) => Promise<APIResultDTO<ContactOutputDTO>>;
-  deleteContact: (id: number) => Promise<APIResultDTO<ContactDeleteOutputDTO>>;
-  postContact: (data: ContactPostInputDTO) => Promise<APIResultDTO<Users>>;
-  putContact: (data: ContactPutInputDTO) => Promise<APIResultDTO<Users>>;
+  getContact: () => Promise<ContactOutputDTO>;
+  getFilteredContacts: (searchValue: string) => Promise<ContactOutputDTO>;
+  deleteContact: (id: number) => Promise<ContactDeleteOutputDTO>;
+  postContact: (data: ContactPostInputDTO) => Promise<Users>;
+  putContact: (data: ContactPutInputDTO) => Promise<Users>;
 }

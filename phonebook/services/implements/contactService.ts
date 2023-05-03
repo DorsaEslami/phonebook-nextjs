@@ -12,6 +12,7 @@ import { APIResultDTO } from '@/dtos/apiResultDTO';
 
 @injectable()
 export class ContactService implements IContactService {
+
   login = async (): Promise<APIResultDTO<LoginOutputDTO>> => {
     try {
       // var url = 'https://fakestoreapi.com/auth/login';
@@ -35,50 +36,50 @@ export class ContactService implements IContactService {
     }
   }
 
-  getContact = async (): Promise<APIResultDTO<ContactOutputDTO>> => {
+  getContact = async (): Promise<ContactOutputDTO> => {
     try {
       var url = 'https://dummyjson.com/users';
-      var result = await axios.get<APIResultDTO<ContactOutputDTO>>(url);
+      var result = await axios.get<ContactOutputDTO>(url);
       return result.data;
     } catch (error) {
       throw new Error("Something went wrong while fetching data");
     }
   }
 
-  getFilteredContacts = async (searchValue: string): Promise<APIResultDTO<ContactOutputDTO>> => {
+  getFilteredContacts = async (searchValue: string): Promise<ContactOutputDTO> => {
     try {
       var url = 'https://dummyjson.com/users/search?q=' + searchValue;
-      var result = await axios.get<APIResultDTO<ContactOutputDTO>>(url);
+      var result = await axios.get<ContactOutputDTO>(url);
       return result.data;
     } catch (error) {
       throw new Error("Something went wrong while fetching data");
     }
   }
 
-  deleteContact = async (id: number): Promise<APIResultDTO<ContactDeleteOutputDTO>> => {
+  deleteContact = async (id: number): Promise<ContactDeleteOutputDTO> => {
     try {
       var url = 'https://dummyjson.com/users/' + id;
-      var result = await axios.delete<APIResultDTO<ContactDeleteOutputDTO>>(url);
+      var result = await axios.delete<ContactDeleteOutputDTO>(url);
       return result.data;
     } catch (error) {
       throw new Error("Something went wrong while fetching data");
     }
   };
 
-  postContact = async (data: ContactPostInputDTO): Promise<APIResultDTO<Users>> => {
+  postContact = async (data: ContactPostInputDTO): Promise<Users> => {
     try {
       var url = 'https://dummyjson.com/users/add';
-      var result = await axios.post<APIResultDTO<Users>>(url, data);
+      var result = await axios.post<Users>(url, data);
       return result.data;
     } catch (error) {
       throw new Error("Something went wrong while fetching data");
     }
   };
 
-  putContact = async (data: ContactPutInputDTO): Promise<APIResultDTO<Users>> => {
+  putContact = async (data: ContactPutInputDTO): Promise<Users> => {
     try {
       var url = 'https://dummyjson.com/users/' + data.id;
-      var result = await axios.put<APIResultDTO<Users>>(url, data);
+      var result = await axios.put<Users>(url, data);
       return result.data;
     } catch (error) {
       throw new Error("Something went wrong while fetching data");

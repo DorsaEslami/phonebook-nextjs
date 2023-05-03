@@ -44,10 +44,15 @@ const Login = (): JSX.Element => {
     const result = await signIn("credentials", {
       username: fieldsValue.username,
       password: fieldsValue.password,
-      redirect: true,
-      callbackUrl: '/dashboard'
+      redirect: false,
     });
-    console.log('result', result)
+    if (result && result.status === 200) {
+      router.push('/dashboard');
+      Notification({ message: 'Welcome to phonebook app.' });
+    }
+    else {
+      Notification({ message: 'Something went wrong!', type: 'error' });
+    }
   }
   /* #endregion */
 
