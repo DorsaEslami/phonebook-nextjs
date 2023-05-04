@@ -4,12 +4,8 @@ import { Form, Layout, Col, Input, Button } from "antd";
 import { useEffect, } from "react"
 import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
-import { IContactService } from "@/services/interfaces/IContactService";
-import container, { TYPES } from "@/inversify.config";
-import { LoginOutputDTO } from "@/dtos/loginOutputDTO";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
-const { Content } = Layout;
 /* #endregion */
 
 const Login = (): JSX.Element => {
@@ -22,8 +18,8 @@ const Login = (): JSX.Element => {
   /* #region [- setFieldsValue -] */
   useEffect(() => {
     form.setFieldsValue({
-      username: 'admin',
-      password: 'admin'
+      username: 'admin123',
+      password: 'admin123'
     })
   }, [])
   /* #endregion */
@@ -78,10 +74,10 @@ const Login = (): JSX.Element => {
                 { required: true, message: 'Please input your username!' },
                 () => ({
                   validator(_, value) {
-                    if (value === 'admin') {
+                    if (value === 'admin123') {
                       return Promise.resolve();
                     }
-                    return Promise.reject(new Error('Username is "admin".'));
+                    return Promise.reject(new Error('Username is "admin123".'));
                   },
                 }),
               ]}
@@ -97,10 +93,10 @@ const Login = (): JSX.Element => {
                 { required: true, message: 'Please input your password!' },
                 () => ({
                   validator(_, value) {
-                    if (value === 'admin') {
+                    if (value === 'admin123') {
                       return Promise.resolve();
                     }
-                    return Promise.reject(new Error('Password is "admin".'));
+                    return Promise.reject(new Error('Password is "admin123".'));
                   },
                 }),
               ]}

@@ -1,6 +1,6 @@
 export class Users {
   id: number | undefined = undefined;
-  firstName: String = '';
+  firstName: string = '';
   lastName: string = '';
   age: number | undefined = undefined;
   gender: string | undefined = undefined;

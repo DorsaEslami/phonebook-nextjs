@@ -1,25 +1,16 @@
 /* #region  [- import -] */
 import { Pie, Column } from '@ant-design/plots';
-import { useEffect } from 'react';
-import { getContact } from '../../../store/reducers/contactAction';
-import { useAppSelector, useAppDispatch } from "../../../store/config/configureStore";
-import { Col, Row, Card } from 'antd';
+import { Col, Card } from 'antd';
 import Styles from '../../../styles/components/dashboard/defaultContent/defaultContent.module.scss';
 import { Users } from '../../../dtos/contactOutputDTO';
 /* #endregion */
-
-const DefaultContent = (): JSX.Element => {
+interface props {
+  contactsList: Users[]
+}
+const DefaultContent = ({ contactsList = [] }: props): JSX.Element => {
 
   /* #region  [- variables -] */
   type percentType = any
-  const dispatch = useAppDispatch();
-  const contactsList = useAppSelector<Users[]>((state) => state.contact.contactsList);
-  /* #endregion */
-
-  /* #region  [- getContact -] */
-  useEffect(() => {
-    dispatch(getContact())
-  }, [])
   /* #endregion */
 
   /* #region  [- pieChartData -] */

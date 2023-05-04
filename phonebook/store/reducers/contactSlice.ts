@@ -16,7 +16,10 @@ const contactSlice = createSlice({
   name: "contact",
   initialState,
   reducers: {
-    resetContacts: () => initialState
+    resetContacts: () => initialState,
+    setContactsList(state, action) {
+      state.contactsList = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -34,5 +37,5 @@ const contactSlice = createSlice({
 
   },
 });
-export const { resetContacts } = contactSlice.actions;
+export const { resetContacts, setContactsList } = contactSlice.actions;
 export default contactSlice.reducer;

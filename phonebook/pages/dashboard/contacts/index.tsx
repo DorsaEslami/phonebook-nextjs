@@ -1,9 +1,9 @@
 /* #region  [- import -] */
 import Styles from '../../../styles/components/dashboard/contacts/contacts.module.scss';
-import { Button, Card, Avatar, Input, Drawer, Modal, Form, InputNumber, Radio } from 'antd';
+import { Button, Card, Avatar, Input, Drawer, Modal, Form, InputNumber, Radio, Space } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from "../../../store/config/configureStore";
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { getContact, getFilteredContacts, } from '../../../store/reducers/contactAction';
 import { Users } from '../../../dtos/contactOutputDTO';
 import Notification from '../../../components/shared/notification/notification';
@@ -12,6 +12,7 @@ import { ContactPutInputDTO } from '../../../dtos/ContactPutInputDTO';
 import { IContactService } from "../../../services/interfaces/IContactService";
 import container, { TYPES } from "../../../inversify.config";
 import { ContactDeleteOutputDTO } from '../../../dtos/contactDeleteOutputDTO';
+import { useRouter } from 'next/router';
 const { Meta } = Card;
 const { Search } = Input;
 /* #endregion */
@@ -20,6 +21,7 @@ const { Search } = Input;
 const Contacts = (): JSX.Element => {
 
   /* #region  [- variable -] */
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();
   const contactsList = useAppSelector<Users[]>((state) => state.contact.contactsList);
@@ -173,6 +175,14 @@ const Contacts = (): JSX.Element => {
   }
   /* #endregion */
 
+  /* #region [- onClickCard -] */
+  const onClickCard = (item: Users) => {
+    if (id) {
+      router.push(`/dashboard/contacts/details/${item.id}/${item.firstName}/${item.lastName}`)
+    }
+  }
+  /* #endregion */
+
   /* #endregion */
 
   /* #region  [- return -] */
@@ -259,6 +269,7 @@ const Contacts = (): JSX.Element => {
             key={item.id}
             hoverable
             className={Styles.card}
+            onClick={() => onClickCard(item)}
             actions={[
               <EditOutlined key={'edit' + item.id} id={String(item.id)} onClick={() => onClickEditButton(item)} />,
               <DeleteOutlined key={'delete' + item.id} id={String(item.id)} onClick={() => onClickDeleteButton(item)} />,

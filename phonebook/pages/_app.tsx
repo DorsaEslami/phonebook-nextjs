@@ -4,8 +4,8 @@ import Head from 'next/head'
 import { ConfigProvider } from 'antd';
 import { Provider } from "react-redux";
 import store from '../store/config/configureStore';
-import { SessionProvider } from "next-auth/react";
 import { Montserrat } from 'next/font/google';
+import { useSession } from 'next-auth/react';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -26,8 +26,9 @@ const defaultData: ThemeData = {
 
 /* #endregion */
 
-export default function App({ Component, pageProps, ...session }: AppProps) {
-  console.log('pageProps', pageProps)
+export default function App({ Component, pageProps }: AppProps) {
+  var session = useSession();
+  console.log('session', session)
   return (
     <>
       <Head>
