@@ -177,8 +177,8 @@ const Contacts = (): JSX.Element => {
 
   /* #region [- onClickCard -] */
   const onClickCard = (item: Users) => {
-    if (id) {
-      router.push(`/dashboard/contacts/details/${item.id}/${item.firstName}/${item.lastName}`)
+    if (item.id) {
+      router.push(`/dashboard/contacts/details/${item.id}`)
     }
   }
   /* #endregion */
@@ -276,12 +276,12 @@ const Contacts = (): JSX.Element => {
             ]}
           >
             <Meta avatar={<Avatar alt="profile" src={item.image} size='large' />} title={item.firstName + ' ' + item.lastName} />
-            <div className={Styles.description}>
+            <section className={Styles.description}>
               <p>Phone:{' ' + item.phone}</p>
               <p>Email:{' ' + item.email}</p>
               <p>Age:{' ' + item.age}</p>
               <p>Gender:{' ' + (item.gender === 'male' ? 'Male' : 'Female')}</p>
-            </div>
+            </section>
           </Card>
         )}
         <Modal

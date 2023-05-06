@@ -5,7 +5,7 @@ import { ConfigProvider } from 'antd';
 import { Provider } from "react-redux";
 import store from '../store/config/configureStore';
 import { Montserrat } from 'next/font/google';
-import { SessionProvider, useSession } from 'next-auth/react';
+import { SessionProvider } from 'next-auth/react';
 
 const montserrat = Montserrat({
   subsets: ['latin'],

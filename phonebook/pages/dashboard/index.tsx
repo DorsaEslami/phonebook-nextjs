@@ -7,11 +7,10 @@ import { SelectInfo } from 'rc-menu/lib/interface';
 import container, { TYPES } from "@/inversify.config";
 import { IContactService } from "@/services/interfaces/IContactService";
 import { GetServerSideProps } from "next";
-import { ContactOutputDTO, Users } from "@/dtos/contactOutputDTO";
+import { Users } from "@/dtos/contactOutputDTO";
 import { useAppDispatch } from "@/store/config/configureStore";
 import { setContactsList } from "@/store/reducers/contactSlice";
 import DefaultContent from '../../components/dashboard/defaultContent/defaultContent';
-import { useSession } from "next-auth/react";
 const Contacts = React.lazy(() => import('./contacts'));
 /* #endregion */
 
@@ -52,12 +51,12 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
 
   /* #region  [- return -] */
   return (
-    <div className={Styles.dashboard}>
+    <main className={Styles.main}>
       <Menu onClickMenueItem={onClickMenueItem} />
       <Suspense fallback={<DashboardLoading />}>
-        <div className={Styles.dashboardContent}>{content}</div>
+        <div className={Styles.content}>{content}</div>
       </Suspense>
-    </div>
+    </main>
   );
   /* #endregion */
 

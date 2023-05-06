@@ -1,6 +1,6 @@
 /* #region  [- import -] */
 import Head from 'next/head'
-import { Form, Layout, Col, Input, Button } from "antd";
+import { Form, Col, Input, Button } from "antd";
 import { useEffect, } from "react"
 import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
@@ -26,26 +26,15 @@ const Login = (): JSX.Element => {
 
   /* #region [- login -] */
   const login = async () => {
-    // const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
-    // var response: LoginOutputDTO = await contactService.login();
-    // if (response.token) {
-    //   localStorage.setItem('token', response.token);
-    //   router.push('/dashboard');
-    //   Notification({ message: 'Welcome to phonebook app.' });
-    // }
-    // else {
-    //   Notification({ message: 'Something went wrong!', type: 'error' });
-    // }
     var fieldsValue: { username: string, password: String } = form.getFieldsValue();
     const result = await signIn("credentials", {
       username: fieldsValue.username,
       password: fieldsValue.password,
-      redirect: true,
-      callbackUrl: '/dashboard'
+      redirect: false,
     });
-    // console.log('result', result)
-    if (result) {
+    if (result?.status) {
       Notification({ message: 'Welcome to phonebook app.' });
+      router.push('/dashboard');
     }
     else {
       Notification({ message: 'Something went wrong!', type: 'error' });
