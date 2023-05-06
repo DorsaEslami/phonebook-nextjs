@@ -10,7 +10,7 @@ import { GetServerSideProps } from "next";
 import { Users } from "@/dtos/contactOutputDTO";
 import { useAppDispatch } from "@/store/config/configureStore";
 import { setContactsList } from "@/store/reducers/contactSlice";
-const DefaultContent = React.lazy(() => import('../../components/dashboard/defaultContent/defaultContent'));
+import DefaultContent from '../../components/dashboard/defaultContent/defaultContent';
 const Contacts = React.lazy(() => import('./contacts'));
 /* #endregion */
 
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 interface props {
   contactsList: Users[]
 }
-const Dashboard = ({ contactsList }: props): JSX.Element => {
+const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
 
   /* #region  [- useState -] */
   const [content, setContent] = useState<React.ReactNode>(<DefaultContent contactsList={contactsList} />);

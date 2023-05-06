@@ -5,7 +5,7 @@ import { ConfigProvider } from 'antd';
 import { Provider } from "react-redux";
 import store from '../store/config/configureStore';
 import { Montserrat } from 'next/font/google';
-import { useSession } from 'next-auth/react';
+import { SessionProvider, useSession } from 'next-auth/react';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -27,8 +27,7 @@ const defaultData: ThemeData = {
 /* #endregion */
 
 export default function App({ Component, pageProps }: AppProps) {
-  var session = useSession();
-  console.log('session', session)
+
   return (
     <>
       <Head>
@@ -36,20 +35,20 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="description" content="Phonebook app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Provider store={store}>
-        <ConfigProvider theme={{
-          token: {
-            borderRadius: defaultData.borderRadius,
-            colorPrimary: defaultData.colorPrimary,
-            fontFamily: defaultData.fontFamily,
-            colorSuccess: defaultData.colorSuccess
-          }
-        }}>
-          <Component {...pageProps} />
-        </ConfigProvider>
-      </Provider>
-
+      <SessionProvider session={pageProps.session}>
+        <Provider store={store}>
+          <ConfigProvider theme={{
+            token: {
+              borderRadius: defaultData.borderRadius,
+              colorPrimary: defaultData.colorPrimary,
+              fontFamily: defaultData.fontFamily,
+              colorSuccess: defaultData.colorSuccess
+            }
+          }}>
+            <Component {...pageProps} />
+          </ConfigProvider>
+        </Provider>
+      </SessionProvider>
     </>
   )
 

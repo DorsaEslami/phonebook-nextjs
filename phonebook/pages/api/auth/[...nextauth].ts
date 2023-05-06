@@ -4,7 +4,7 @@ import type { NextAuthOptions } from "next-auth";
 import container, { TYPES } from "@/inversify.config";
 import { IContactService } from "@/services/interfaces/IContactService";
 import NextAuth from "next-auth";
-
+import Notification from '../../../components/shared/notification/notification'
 
 /* #endregion */
 
@@ -26,27 +26,30 @@ export const authOptions: NextAuthOptions = {
         const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
         var user = await contactService.login();
         if (user.status === 200 && user.data) {
+          console.log('user', user)
           return user.data;
-        } else return null;
+        } else {
+          return null;
+        }
 
       }
     }),
   ],
 
-  callbacks: {
-    async jwt({ token, user, }) {
-      if (user) {
-        token.user = user;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      var { user }: any = token;
-      session.user.id = user.id;
-      session.user.token = user.token;
-      return session;
-    },
-  },
+  // callbacks: {
+  //   async jwt({ token, user, }) {
+  //     if (user) {
+  //       token.user = user;
+  //     }
+  //     return token;
+  //   },
+  //   async session({ session, token }) {
+  //     var { user }: any = token;
+  //     session.user.id = user.id;
+  //     session.user.token = user.token;
+  //     return session;
+  //   },
+  // },
 
 
 };

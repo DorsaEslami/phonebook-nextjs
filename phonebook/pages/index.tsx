@@ -18,8 +18,8 @@ const Login = (): JSX.Element => {
   /* #region [- setFieldsValue -] */
   useEffect(() => {
     form.setFieldsValue({
-      username: 'admin123',
-      password: 'admin123'
+      username: 'dorsa97@',
+      password: 'dorsa97@'
     })
   }, [])
   /* #endregion */
@@ -40,10 +40,11 @@ const Login = (): JSX.Element => {
     const result = await signIn("credentials", {
       username: fieldsValue.username,
       password: fieldsValue.password,
-      redirect: false,
+      redirect: true,
+      callbackUrl: '/dashboard'
     });
-    if (result && result.status === 200) {
-      router.push('/dashboard');
+    // console.log('result', result)
+    if (result) {
       Notification({ message: 'Welcome to phonebook app.' });
     }
     else {
@@ -74,10 +75,10 @@ const Login = (): JSX.Element => {
                 { required: true, message: 'Please input your username!' },
                 () => ({
                   validator(_, value) {
-                    if (value === 'admin123') {
+                    if (value === 'dorsa97@') {
                       return Promise.resolve();
                     }
-                    return Promise.reject(new Error('Username is "admin123".'));
+                    return Promise.reject(new Error('Username is "dorsa97@".'));
                   },
                 }),
               ]}
@@ -93,10 +94,10 @@ const Login = (): JSX.Element => {
                 { required: true, message: 'Please input your password!' },
                 () => ({
                   validator(_, value) {
-                    if (value === 'admin123') {
+                    if (value === 'dorsa97@') {
                       return Promise.resolve();
                     }
-                    return Promise.reject(new Error('Password is "admin123".'));
+                    return Promise.reject(new Error('Password is "dorsa97@".'));
                   },
                 }),
               ]}
