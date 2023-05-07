@@ -11,6 +11,7 @@ import { Users } from "@/dtos/contactOutputDTO";
 import { useAppDispatch } from "@/store/config/configureStore";
 import { setContactsList } from "@/store/reducers/contactSlice";
 import DefaultContent from '../../components/dashboard/defaultContent/defaultContent';
+import Head from "next/head";
 const Contacts = React.lazy(() => import('./contacts'));
 /* #endregion */
 
@@ -51,12 +52,17 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
 
   /* #region  [- return -] */
   return (
-    <main className={Styles.main}>
-      <Menu onClickMenueItem={onClickMenueItem} />
-      <Suspense fallback={<DashboardLoading />}>
-        <div className={Styles.content}>{content}</div>
-      </Suspense>
-    </main>
+    <>
+      <Head>
+        <title>Phonebook App</title>
+      </Head>
+      <main className={Styles.main}>
+        <Menu onClickMenueItem={onClickMenueItem} />
+        <Suspense fallback={<DashboardLoading />}>
+          <div className={Styles.content}>{content}</div>
+        </Suspense>
+      </main>
+    </>
   );
   /* #endregion */
 

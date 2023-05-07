@@ -6,6 +6,8 @@ import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import Image from 'next/image'
+import loginImage from '../public/img/login.png'
 /* #endregion */
 
 const Login = (): JSX.Element => {
@@ -49,11 +51,18 @@ const Login = (): JSX.Element => {
     </Head>
     <main className={Styles.main}>
       <section className={Styles.section}>
-        <Col md={0} lg={12} xl={12} xxl={11} className={Styles.imageCol}>
-          <img src="../img/login.png" alt="login" className={Styles.loginImage} />
+        <Col xs={0} sm={0} md={0} lg={12} xl={12} xxl={11} className={Styles.imageCol}>
+          <Image
+            src={loginImage}
+            alt='login Image'
+            placeholder='blur'
+            fill
+            className={Styles.loginImage}
+            sizes="(max-width: 991px) 0vw, 50vw"
+          />
         </Col>
-        <Col md={0} lg={0} xl={1} xxl={2}></Col>
-        <Col md={24} lg={12} xl={11} xxl={11} className={Styles.formCol}>
+        <Col xs={0} sm={0} md={0} lg={0} xl={1} xxl={2}></Col>
+        <Col xs={24} sm={24} md={24} lg={12} xl={11} xxl={11} className={Styles.formCol}>
           <p className={Styles.welcomeTitle}>Welcome to Phonebook app</p>
           <Form className={Styles.form} onFinish={login} form={form}  >
             <Form.Item

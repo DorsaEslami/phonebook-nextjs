@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../../store/config/configureStore';
 import { resetContacts } from '../../../store/reducers/contactSlice';
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
-import Link from 'next/link';
+
 
 /* #region  [- interface -] */
 interface Props {
