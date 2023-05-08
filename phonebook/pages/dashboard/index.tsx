@@ -12,6 +12,9 @@ import { useAppDispatch } from "@/store/config/configureStore";
 import { setContactsList } from "@/store/reducers/contactSlice";
 import DefaultContent from '../../components/dashboard/defaultContent/defaultContent';
 import Head from "next/head";
+import { signOut } from "next-auth/react";
+import { resetContacts } from '@/store/reducers/contactSlice';
+import { useRouter } from 'next/router';
 const Contacts = React.lazy(() => import('../../components/dashboard/contacts/contacts'));
 /* #endregion */
 
@@ -34,6 +37,7 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
   /* #region  [- useState -] */
   const [content, setContent] = useState<React.ReactNode>(<DefaultContent contactsList={contactsList} />);
   const dispatch = useAppDispatch();
+  const router = useRouter()
   /* #endregion */
 
   /* #region [- setContactsList -] */
@@ -44,14 +48,23 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
 
   /* #region  [- onClickMenueItem -] */
   const onClickMenueItem = (info: SelectInfo) => {
-    if (info.key === 'home') {
-      setContent(<DefaultContent contactsList={contactsList} />);
-    }
-    else if (info.key === 'contacts') {
-      setContent(<Contacts />);
-    }
-    else {
-      setContent(<DefaultContent contactsList={contactsList} />);
+    switch (info.key) {
+      case 'home':
+        setContent(<DefaultContent contactsList={contactsList} />);
+        break;
+      case 'contacts':
+        setContent(<Contacts />);
+        break;
+      case 'change-password':
+        router.push('/changePassword');
+        break;
+      case 'logout':
+        dispatch(resetContacts());
+        signOut({ redirect: true, callbackUrl: '/' });
+        break;
+      default:
+        setContent(<DefaultContent contactsList={contactsList} />);
+        break;
     }
   }
   /* #endregion */
@@ -65,7 +78,7 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
       <main className={Styles.main}>
         <Menu onClickMenueItem={onClickMenueItem} />
         <Suspense fallback={<DashboardLoading />}>
-          <div className={Styles.content}>{content}</div>
+          <section className={Styles.section}>{content}</section>
         </Suspense>
       </main>
     </>

@@ -81,7 +81,7 @@ const ChangePassword = (props: Props) => {
             >
               <Input.Password allowClear={true} />
             </Form.Item>
-            <Button type="primary" htmlType="submit" className={Styles.submitButton}><Link href="/dashboard">Go back to dashboard</Link></Button>
+            <Button type="primary" className={Styles.submitButton}><Link href="/dashboard">Go back to dashboard</Link></Button>
 
           </Form>
 

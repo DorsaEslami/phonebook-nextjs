@@ -1,13 +1,9 @@
 import { Menu as AntdMenu, MenuProps } from 'antd';
-
 import { PoweroffOutlined, LockOutlined } from '@ant-design/icons';
 import ProfileIcon from './profileIcon';
 import Styles from '../../../styles/components/dashboard/menu/menu.module.scss';
 import { SelectInfo } from '../../../node_modules/rc-menu/lib/interface';
-import { useAppDispatch } from '../../../store/config/configureStore';
-import { resetContacts } from '../../../store/reducers/contactSlice';
-import { useRouter } from 'next/router';
-import { signOut } from 'next-auth/react';
+
 
 
 /* #region  [- interface -] */
@@ -16,8 +12,7 @@ interface Props {
 }
 /* #endregion */
 const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const router = useRouter()
+
   /* #region  [- items -] */
   const items: MenuProps['items'] = [
 
@@ -41,18 +36,11 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
           label: 'Change Password',
           key: 'change-password',
           icon: <LockOutlined />,
-          onClick: () => {
-            router.push('/changePassword');
-          }
         },
         {
           label: 'Logout',
           key: 'logout',
           icon: <PoweroffOutlined />,
-          onClick: () => {
-            dispatch(resetContacts());
-            signOut({ redirect: true, callbackUrl: '/' });
-          }
         },
       ]
     }
