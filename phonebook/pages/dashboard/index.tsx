@@ -12,18 +12,24 @@ import { useAppDispatch } from "@/store/config/configureStore";
 import { setContactsList } from "@/store/reducers/contactSlice";
 import DefaultContent from '../../components/dashboard/defaultContent/defaultContent';
 import Head from "next/head";
-const Contacts = React.lazy(() => import('./contacts'));
+const Contacts = React.lazy(() => import('../../components/dashboard/contacts/contacts'));
 /* #endregion */
 
+/* #region [- interface -]] */
+interface props {
+  contactsList: Users[]
+}
+/* #endregion */
+
+/* #region [- getServerSideProps -] */
 export const getServerSideProps: GetServerSideProps = async () => {
   const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
   var response = await contactService.getContact();
   var { users } = response;
   return { props: { contactsList: users } }
 }
-interface props {
-  contactsList: Users[]
-}
+/* #endregion */
+
 const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
   /* #region  [- useState -] */
   const [content, setContent] = useState<React.ReactNode>(<DefaultContent contactsList={contactsList} />);

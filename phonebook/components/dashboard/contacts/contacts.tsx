@@ -1,9 +1,9 @@
 /* #region  [- import -] */
 import Styles from '../../../styles/components/dashboard/contacts/contacts.module.scss';
 import { Button, Card, Avatar, Input, Drawer, Modal, Form, InputNumber, Radio, Space } from 'antd';
-import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, EditOutlined, DeleteOutlined, FileSearchOutlined } from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from "../../../store/config/configureStore";
-import { MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { getContact, getFilteredContacts, } from '../../../store/reducers/contactAction';
 import { Users } from '../../../dtos/contactOutputDTO';
 import Notification from '../../../components/shared/notification/notification';
@@ -178,7 +178,7 @@ const Contacts = (): JSX.Element => {
   /* #region [- onClickCard -] */
   const onClickCard = (item: Users) => {
     if (item.id) {
-      router.push(`/dashboard/contacts/details/${item.id}`)
+      router.push(`/dashboard/contactsDetail/${item.id}`)
     }
   }
   /* #endregion */
@@ -269,10 +269,10 @@ const Contacts = (): JSX.Element => {
             key={item.id}
             hoverable
             className={Styles.card}
-            onClick={() => onClickCard(item)}
             actions={[
               <EditOutlined key={'edit' + item.id} id={String(item.id)} onClick={() => onClickEditButton(item)} />,
               <DeleteOutlined key={'delete' + item.id} id={String(item.id)} onClick={() => onClickDeleteButton(item)} />,
+              <FileSearchOutlined key={'more' + item.id} id={String(item.id)} onClick={() => onClickCard(item)} />,
             ]}
           >
             <Meta avatar={<Avatar alt="profile" src={item.image} size='large' />} title={item.firstName + ' ' + item.lastName} />

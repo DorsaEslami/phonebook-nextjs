@@ -72,6 +72,10 @@
     }
   }
 
+  :global .ant-form-item-label>label {
+    color: map.get(theme.$light-theme, 'black');
+  }
+
 }
 
 .submitButton {

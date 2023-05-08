@@ -66,6 +66,9 @@
   font-size: 0.875rem;
   width: 100%;
 }
+.formItem :global .ant-form-item-label > label {
+  color: #0F1E27;
+}
 
 .submitButton {
   width: 100%;

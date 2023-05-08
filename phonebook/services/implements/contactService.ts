@@ -20,16 +20,6 @@ export class ContactService implements IContactService {
         username: "kminchelle",
         password: "0lelplR"
       });
-      // var result: APIResultDTO<LoginOutputDTO> = {
-      //   data: {
-      //     id: 1,
-      //     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZz9zaXplPTUweDUwJnNldD1zZXQxIiwiaWF0IjoxNjM1NzczOTYyLCJleHAiOjE2MzU3Nzc1NjJ9.n9PQX8w8ocKo0dMCw3g8bKhjB8Wo7f7IONFBDqfxKhs"
-      //   },
-      //   status: 200,
-      //   statusText: undefined,
-      //   headers: undefined,
-      //   config: undefined,
-      // };
       return result;
     } catch (error) {
       throw new Error("Something went wrong while fetching data");

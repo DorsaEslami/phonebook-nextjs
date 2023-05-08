@@ -1,7 +1,7 @@
 /* #region  [- import -] */
 import Head from 'next/head'
 import { Form, Col, Input, Button } from "antd";
-import { useEffect, } from "react"
+import { useEffect, useState, } from "react"
 import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
 import { useRouter } from "next/router";
@@ -15,6 +15,7 @@ const Login = (): JSX.Element => {
   /* #region [- variables -] */
   const router = useRouter();
   const [form] = Form.useForm();
+  var [submitButtonText, setSubmitButtonTest] = useState<string>('Sign in');
   /* #endregion */
 
   /* #region [- setFieldsValue -] */
@@ -28,6 +29,7 @@ const Login = (): JSX.Element => {
 
   /* #region [- login -] */
   const login = async () => {
+    setSubmitButtonTest('Processing...');
     var fieldsValue: { username: string, password: String } = form.getFieldsValue();
     const result = await signIn("credentials", {
       username: fieldsValue.username,
@@ -37,8 +39,10 @@ const Login = (): JSX.Element => {
     if (result?.status) {
       Notification({ message: 'Welcome to phonebook app.' });
       router.push('/dashboard');
+
     }
     else {
+      setSubmitButtonTest('Sign in');
       Notification({ message: 'Something went wrong!', type: 'error' });
     }
   }
@@ -57,7 +61,6 @@ const Login = (): JSX.Element => {
             alt='login Image'
             placeholder='blur'
             fill
-            className={Styles.loginImage}
             sizes="(max-width: 991px) 0vw, 50vw"
           />
         </Col>
@@ -103,7 +106,7 @@ const Login = (): JSX.Element => {
             >
               <Input.Password allowClear={true} />
             </Form.Item>
-            <Button type="primary" htmlType="submit" className={Styles.submitButton}>Login</Button>
+            <Button type="primary" htmlType="submit" className={Styles.submitButton}>{submitButtonText}</Button>
 
           </Form>
         </Col>
