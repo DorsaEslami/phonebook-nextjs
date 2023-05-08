@@ -255,9 +255,9 @@ const Contacts = (): JSX.Element => {
               <Button type='primary' size='large' className={Styles.informModalButton} key='informModalNoButton' onClick={() => setIsInformModalOpen(false)}>Ok</Button>
             ]} >
             <p>Please note:</p>
-            <p>'Dummyjson' is a fake data provider I used in this project.</p>
-            <p>'Adding' or 'Editing' a contact will not add/edit into 'https://dummyjson.com/' server.</p>
-            <p>Therefore, you won't be able to see any changes in contacts list.</p>
+            <p>&apos;Dummyjson&apos; is a fake data provider I used in this project.</p>
+            <p>&apos;Adding&apos; or &apos;Editing&apos; a contact will not add/edit into &apos;https://dummyjson.com/&apos; server.</p>
+            <p>Therefore, you won&apos;t be able to see any changes in contacts list.</p>
             <p>However, based on the notification you see on the bottom rigth side of the page you will be able to check if the process has been successfull or not.</p>
           </Modal>
         </section>
@@ -296,8 +296,8 @@ const Contacts = (): JSX.Element => {
           ]} >
           <p>Are you sure you want to delete contact: {fullName}?</p>
           <p>Please note:</p>
-          <p>Deleting a contact will not delete it into 'https://dummyjson.com/' server.</p>
-          <p>'Dummyjson' is a fake data provider I used in this project.</p>
+          <p>Deleting a contact will not delete it into &apos;https://dummyjson.com/&apos; server.</p>
+          <p>&apos;Dummyjson&apos; is a fake data provider I used in this project.</p>
           <p>Therefore, you still will be able to see the deleted contact in contacts list.</p>
           <p>However, based on the notification you see on the bottom rigth side of the page you will be able to check if deleting has been successfull or not.</p>
         </Modal>
