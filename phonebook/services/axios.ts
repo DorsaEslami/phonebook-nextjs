@@ -3,7 +3,7 @@ import { getSession, signOut } from "next-auth/react";
 
 const axiosInstance = axios.create();
 axios.interceptors.request.use(async function (config: any) {
-  const session = await getSession();
+  var session = await getSession();
   config.headers.accept = 'text/plain';
   config.headers['Content-Type'] = 'application/json';
   let token = session?.user.token;
