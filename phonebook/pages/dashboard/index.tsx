@@ -30,10 +30,8 @@ interface props {
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const serverSession: Session | null = await getServerSession(context.req, context.res, authOptions);
   if (!serverSession?.user.token) {
-    console.log('getServerSideProps')
     signOut();
   }
-
   const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
   var response = await contactService.getContact(false);
   var { users } = response;

@@ -9,7 +9,6 @@ const axios = (isThisClientRequest: boolean = true): AxiosInstance => {
   axiosInstance.interceptors.request.use(async function (config: any) {
     var session: Session | null = isThisClientRequest ? await getSession() : null;
     if (session && !session.user.token) {
-      console.log('axios')
       signOut();
     }
     config.headers.accept = 'text/plain';
