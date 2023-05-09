@@ -10,11 +10,6 @@ export default withAuth(
         new URL("/", req.url)
       );
   },
-  {
-    callbacks: {
-      authorized: ({ token }) => !!token,
-    },
-  }
 );
 
 export const config = {
