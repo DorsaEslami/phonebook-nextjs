@@ -1,8 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 
 export default withAuth(
-  function middleware(req) {
-  },
   {
     callbacks: {
       authorized: ({ token }) => !!token?.token,
@@ -11,5 +9,5 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ["/changePassword"],
+  matcher: ["/dashboard/:path*", "/changePassword"],
 };
