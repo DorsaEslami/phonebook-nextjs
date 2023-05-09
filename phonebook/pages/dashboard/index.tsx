@@ -30,6 +30,7 @@ interface props {
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const serverSession: Session | null = await getServerSession(context.req, context.res, authOptions);
   if (!serverSession?.user.token) {
+    console.log('getServerSideProps')
     signOut();
   }
 
