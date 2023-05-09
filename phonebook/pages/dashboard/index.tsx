@@ -6,7 +6,7 @@ import DashboardLoading from '../../components/dashboard/dashboardLoading/dashbo
 import { SelectInfo } from 'rc-menu/lib/interface';
 import container, { TYPES } from "@/inversify.config";
 import { IContactService } from "@/services/interfaces/IContactService";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { Users } from "@/dtos/contactOutputDTO";
 import { useAppDispatch } from "@/store/config/configureStore";
 import { setContactsList } from "@/store/reducers/contactSlice";
@@ -15,6 +15,8 @@ import Head from "next/head";
 import { signOut } from "next-auth/react";
 import { resetContacts } from '@/store/reducers/contactSlice';
 import { useRouter } from 'next/router';
+import { Session, getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]";
 const Contacts = React.lazy(() => import('../../components/dashboard/contacts/contacts'));
 /* #endregion */
 
@@ -25,9 +27,14 @@ interface props {
 /* #endregion */
 
 /* #region [- getServerSideProps -] */
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  const serverSession: Session | null = await getServerSession(context.req, context.res, authOptions);
+  if (!serverSession?.user.token) {
+    signOut();
+  }
+
   const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
-  var response = await contactService.getContact();
+  var response = await contactService.getContact(false);
   var { users } = response;
   return { props: { contactsList: users } }
 }
@@ -60,7 +67,7 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
         break;
       case 'logout':
         dispatch(resetContacts());
-        signOut({ redirect: true, callbackUrl: '/' });
+        signOut();
         break;
       default:
         setContent(<DefaultContent contactsList={contactsList} />);

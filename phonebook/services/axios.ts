@@ -1,26 +1,33 @@
-import axios from "axios";
+import originalAxios, { AxiosInstance } from "axios";
+import { Session } from "next-auth";
 import { getSession, signOut } from "next-auth/react";
 
-const axiosInstance = axios.create();
-axios.interceptors.request.use(async function (config: any) {
-  var session = await getSession();
-  config.headers.accept = 'text/plain';
-  config.headers['Content-Type'] = 'application/json';
-  let token = session?.user.token;
-  if (token === null) {
-    signOut();
-  }
-  return config;
-}, function (error: any) {
-  return Promise.reject(error);
-});
 
-axios.interceptors.response.use(function (response) {
-  return response;
-}, function (error) {
-  if (error.response.status === 401 || error.response.status === 403) {
-    signOut();
-  }
-  return Promise.reject(error);
-});
-export default axiosInstance;
+const axios = (isThisClientRequest: boolean = true): AxiosInstance => {
+
+  const axiosInstance = originalAxios.create();
+  axiosInstance.interceptors.request.use(async function (config: any) {
+    var session: Session | null = isThisClientRequest ? await getSession() : null;
+    if (session && !session.user.token) {
+      signOut();
+    }
+    config.headers.accept = 'text/plain';
+    config.headers['Content-Type'] = 'application/json';
+    return config;
+  }, function (error: any) {
+    return Promise.reject(error);
+  });
+
+  axiosInstance.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      signOut();
+    }
+    return Promise.reject(error);
+  });
+  return axiosInstance;
+}
+
+export default axios;
+
