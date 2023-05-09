@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req) {
-    console.log('token', req.nextauth.token)
     if (req.nextUrl.pathname.startsWith("/dashboard") && !req.nextauth.token) {
       return NextResponse.rewrite(new URL("/auth/login?message=You Are Not logged in!", req.url));
     }
