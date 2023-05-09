@@ -26,7 +26,7 @@ export class ContactService implements IContactService {
     }
   }
 
-  getContact = async (isThisClientRequest: boolean = true): Promise<ContactOutputDTO> => {
+  getContact = async (isThisClientRequest?: boolean): Promise<ContactOutputDTO> => {
     try {
       var url = 'https://dummyjson.com/users';
       var result = await axios(isThisClientRequest).get<ContactOutputDTO>(url);
