@@ -60,7 +60,7 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
         break;
       case 'logout':
         dispatch(resetContacts());
-        signOut();
+        signOut({ redirect: true, callbackUrl: '/' });
         break;
       default:
         setContent(<DefaultContent contactsList={contactsList} />);

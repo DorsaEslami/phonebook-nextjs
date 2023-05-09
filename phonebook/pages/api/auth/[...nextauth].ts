@@ -4,7 +4,6 @@ import type { NextAuthOptions } from "next-auth";
 import container, { TYPES } from "@/inversify.config";
 import { IContactService } from "@/services/interfaces/IContactService";
 import NextAuth from "next-auth";
-import Notification from '../../../components/shared/notification/notification'
 
 /* #endregion */
 
@@ -14,7 +13,6 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/",
-    signOut: "/"
   },
   secret: process.env.NEXTAUTH_SECRET,
 

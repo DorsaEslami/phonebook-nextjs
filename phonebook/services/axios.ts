@@ -9,7 +9,7 @@ const axios = (isThisClientRequest: boolean = true): AxiosInstance => {
   axiosInstance.interceptors.request.use(async function (config: any) {
     var session: Session | null = isThisClientRequest ? await getSession() : null;
     if (session && !session.user.token) {
-      signOut();
+      signOut({ redirect: true, callbackUrl: '/' });
     }
     config.headers.accept = 'text/plain';
     config.headers['Content-Type'] = 'application/json';
@@ -22,7 +22,7 @@ const axios = (isThisClientRequest: boolean = true): AxiosInstance => {
     return response;
   }, function (error) {
     if (error.response?.status === 401 || error.response?.status === 403) {
-      signOut();
+      signOut({ redirect: true, callbackUrl: '/' });
     }
     return Promise.reject(error);
   });
