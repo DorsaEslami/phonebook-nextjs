@@ -49,7 +49,7 @@ const ChangePassword = (props: Props) => {
 
           <Form className={Styles.form} form={form} >
             <Form.Item
-              label="Password"
+              label="New Password"
               name="password"
               className={Styles.formItem}
               rules={[
