@@ -6,7 +6,7 @@ import DashboardLoading from '../../components/dashboard/dashboardLoading/dashbo
 import { SelectInfo } from 'rc-menu/lib/interface';
 import container, { TYPES } from "@/inversify.config";
 import { IContactService } from "@/services/interfaces/IContactService";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetStaticProps } from "next";
 import { Users } from "@/dtos/contactOutputDTO";
 import { useAppDispatch } from "@/store/config/configureStore";
 import { setContactsList } from "@/store/reducers/contactSlice";
@@ -25,7 +25,7 @@ interface props {
 /* #endregion */
 
 /* #region [- getServerSideProps -] */
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
   var response = await contactService.getContact(false);
   var { users } = response;

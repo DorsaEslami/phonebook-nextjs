@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Styles from '../../styles/components/changePassword/changePassword.module.scss';
 import ChangePasswordImage from '../../public/img/change-password.jpg';
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { Button, Form, Input } from 'antd';
 interface Props {
   titles: {
@@ -12,10 +12,10 @@ interface Props {
     note: string
   }
 }
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   var titles = {
-    header: `This page is created using 'Static Site Generation'`,
-    body: `This text is being returned by 'getStaticProps' `,
+    header: `This page is implemented using 'Server side rendering' technique`,
+    body: `This text is being returned by 'getServerSideProps' `,
     note: `Please note that changing password is not possible right now. `
   }
   return {
