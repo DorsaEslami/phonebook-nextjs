@@ -51,7 +51,7 @@ const DefaultContent = ({ contactsList }: props): JSX.Element => {
   /* #region  [- return -] */
   return (
     <main className={Styles.main}>
-      <Col className={Styles.pieChartCol} md={24} lg={12} xl={12} xxl={12}>
+      <Col className={Styles.pieChartCol} xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
         <section className={Styles.cardsSection}>
           <Card title="Total Contacts" className={Styles.totalContactsCard}>
             <p>{Object.keys(contactsList).length}</p>
@@ -66,7 +66,7 @@ const DefaultContent = ({ contactsList }: props): JSX.Element => {
         <VictoryPie data={pieChartData} colorScale={["#eee359", "#ff6361"]} labelRadius={70} />
 
       </Col>
-      <Col className={Styles.columnChartCol} md={24} lg={12} xl={12} xxl={12}>
+      <Col className={Styles.columnChartCol} xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
         <VictoryChart theme={VictoryTheme.grayscale} domainPadding={20} >
           <VictoryBar barWidth={30} style={{ data: { fill: "#c43a31" } }} data={columnChartData} />
         </VictoryChart>

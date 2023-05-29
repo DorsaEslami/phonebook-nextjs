@@ -9,6 +9,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { Button, Descriptions } from 'antd';
 import UserImage from '../../../public/img/user.png'
 import Link from 'next/link';
+import Notification from "../../../components/shared/notification/notification";
 /* #endregion */
 
 const ContactDetail = () => {
@@ -36,8 +37,17 @@ const ContactDetail = () => {
     var contactsListLen = Object.keys(contactsList).length;
 
     if (contactsId && contactsListLen > 0) {
-      var filteredContact = contactsList.filter((item: Users) => item.id === contactsId)[0];
-      setContact(filteredContact);
+      var filteredContact = contactsList.filter((item: Users) => item.id === contactsId);
+      var filteredContactLen: number = Object.keys(filteredContact).length;
+      if (filteredContactLen === 1) {
+        setContact(filteredContact[0]);
+      }
+      else {
+        Notification({ message: 'Contact not found!', type: 'error' });
+      }
+    }
+    else {
+      Notification({ message: 'Something went wrong!', type: 'error' });
     }
   }, [])
   /* #endregion */
