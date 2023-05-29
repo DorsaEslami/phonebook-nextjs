@@ -13,6 +13,7 @@ import { IContactService } from "../../../services/interfaces/IContactService";
 import container, { TYPES } from "../../../inversify.config";
 import { ContactDeleteOutputDTO } from '../../../dtos/contactDeleteOutputDTO';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 const { Meta } = Card;
 const { Search } = Input;
 /* #endregion */
@@ -272,7 +273,7 @@ const Contacts = (): JSX.Element => {
             actions={[
               <EditOutlined key={'edit' + item.id} id={String(item.id)} onClick={() => onClickEditButton(item)} />,
               <DeleteOutlined key={'delete' + item.id} id={String(item.id)} onClick={() => onClickDeleteButton(item)} />,
-              <FileSearchOutlined key={'more' + item.id} id={String(item.id)} onClick={() => onClickCard(item)} />,
+              <Link href={`/dashboard/contactsDetail/${item.id}`}><FileSearchOutlined key={'more' + item.id} id={String(item.id)} onClick={() => onClickCard(item)} /></Link>,
             ]}
           >
             <Meta avatar={<Avatar alt="profile" src={item.image} size='large' />} title={item.firstName + ' ' + item.lastName} />
