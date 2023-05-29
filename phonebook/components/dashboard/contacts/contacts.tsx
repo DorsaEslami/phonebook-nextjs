@@ -176,13 +176,6 @@ const Contacts = (): JSX.Element => {
   }
   /* #endregion */
 
-  /* #region [- onClickCard -] */
-  const onClickCard = (item: Users) => {
-    if (item.id) {
-      router.push(`/dashboard/contactsDetail/${item.id}`)
-    }
-  }
-  /* #endregion */
 
   /* #endregion */
 
@@ -273,7 +266,7 @@ const Contacts = (): JSX.Element => {
             actions={[
               <EditOutlined key={'edit' + item.id} id={String(item.id)} onClick={() => onClickEditButton(item)} />,
               <DeleteOutlined key={'delete' + item.id} id={String(item.id)} onClick={() => onClickDeleteButton(item)} />,
-              <Link href={`/dashboard/contactsDetail/${item.id}`} key={'more' + item.id + 'link'}><FileSearchOutlined key={'more' + item.id} id={String(item.id)} onClick={() => onClickCard(item)} /></Link>,
+              <Link href={`/dashboard/contactsDetail/${item.id}`} key={'more' + item.id + 'link'}><FileSearchOutlined key={'more' + item.id} id={String(item.id)} /></Link>,
             ]}
           >
             <Meta avatar={<Avatar alt="profile" src={item.image} size='large' />} title={item.firstName + ' ' + item.lastName} />
