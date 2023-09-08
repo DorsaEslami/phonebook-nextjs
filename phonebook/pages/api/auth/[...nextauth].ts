@@ -25,9 +25,9 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         //const { username, password } = credentials as any;
         const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
-        var user = await contactService.login();
-        if (user.status === 200 && user.data) {
-          return user.data;
+        var { data, status } = await contactService.login();
+        if (status === 200 && data) {
+          return data;
         } else {
           return null;
         }
@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    async jwt({ token, user, }) {
+    async jwt({ token, user }) {
       return { ...token, ...user };
     },
     async session({ session, token }) {

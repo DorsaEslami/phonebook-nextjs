@@ -37,9 +37,8 @@ const Login = (): JSX.Element => {
       redirect: false,
     });
     if (result?.status) {
-      Notification({ message: 'Welcome to phonebook app.' });
       router.push('/dashboard');
-
+      Notification({ message: 'Welcome to phonebook app.' });
     }
     else {
       setSubmitButtonTest('Sign in');
