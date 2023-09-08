@@ -38,7 +38,7 @@ const Login = (): JSX.Element => {
     });
     if (result?.status) {
       router.push('/dashboard');
-      Notification({ message: 'Welcome to phonebook app.' });
+      Notification({ message: 'Welcome to phonebook app.', type: 'success' });
     }
     else {
       setSubmitButtonTest('Sign in');
