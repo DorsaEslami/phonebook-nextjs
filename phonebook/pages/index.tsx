@@ -38,7 +38,7 @@ const Login = (): JSX.Element => {
     });
     if (result?.status) {
       router.push('/dashboard');
-      Notification({ message: 'Welcome to phonebook app.' });
+      Notification({ message: 'Welcome to phonebook app.', type: 'success' });
     }
     else {
       setSubmitButtonTest('Sign in');
@@ -65,9 +65,9 @@ const Login = (): JSX.Element => {
         </Col>
         <Col xs={0} sm={0} md={0} lg={0} xl={1} xxl={2}></Col>
         <Col xs={24} sm={24} md={24} lg={12} xl={11} xxl={11} className={Styles.formCol}>
-          <p className={Styles.welcomeTitle}>Welcome to Phonebook app</p>
+          <p className={Styles.welcomeTitle} role='welcome-title'>Welcome to Phonebook app</p>
           <Button className={Styles.sourceCodeButton} type='link' href='https://github.com/DorsaEslami/phonebook-nextjs' target='_blank'>Source Code</Button>
-          <Form className={Styles.form} onFinish={login} form={form}  >
+          <Form className={Styles.form} onFinish={login} form={form} role='login-form'>
             <Form.Item
               label="Username"
               name="username"
@@ -104,7 +104,7 @@ const Login = (): JSX.Element => {
               ]}
               hasFeedback
             >
-              <Input.Password allowClear={true} />
+              <Input.Password allowClear={true} role='password-textbox' />
             </Form.Item>
             <Button type="primary" htmlType="submit" className={Styles.submitButton}>{submitButtonText}</Button>
 

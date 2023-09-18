@@ -8,10 +8,10 @@ import { SelectInfo } from '../../../node_modules/rc-menu/lib/interface';
 
 /* #region  [- interface -] */
 interface Props {
-  onClickMenueItem: (info: SelectInfo) => void,
+  onSelectMenueItem: (info: SelectInfo) => void,
 }
 /* #endregion */
-const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
+const Menu = ({ onSelectMenueItem }: Props): JSX.Element => {
 
   /* #region  [- items -] */
   const items: MenuProps['items'] = [
@@ -50,14 +50,15 @@ const Menu = ({ onClickMenueItem }: Props): JSX.Element => {
 
   return (
     <nav className={Styles.nav}>
-      <img className={Styles.logo} src='../img/menu-logo.png' alt="loading" />
-      <div className={Styles.divider}></div>
+      <img className={Styles.logo} src='../img/menu-logo.png' alt="logo" />
+      <div role='divider' className={Styles.divider}></div>
       <AntdMenu
+        forceSubMenuRender={true}
         className={Styles.menu}
         mode="horizontal"
         items={items}
         disabledOverflow={true}
-        onSelect={onClickMenueItem}
+        onSelect={onSelectMenueItem}
         selectedKeys={[]}
       >
       </AntdMenu>

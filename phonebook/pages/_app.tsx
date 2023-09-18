@@ -4,33 +4,10 @@ import Head from 'next/head'
 import { ConfigProvider } from 'antd';
 import { Provider } from "react-redux";
 import store from '../store/config/configureStore';
-import { Montserrat } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
+import { antdConfigToken } from '@/utils/antdConfigToken';
 
-const montserrat = Montserrat({
-  subsets: ['latin'],
-})
-/* #region  [- defaultData -] */
-type ThemeData = {
-  borderRadius: number;
-  colorPrimary: string;
-  fontFamily: string;
-  colorSuccess: string;
-  colorLink: string;
-  colorLinkActive: string;
-  colorLinkHover: string;
-};
-const defaultData: ThemeData = {
-  borderRadius: 6,
-  colorPrimary: '#127591',
-  fontFamily: montserrat.style.fontFamily,
-  colorSuccess: '#127591',
-  colorLink: '#127591',
-  colorLinkActive: '#0b6d89',
-  colorLinkHover: '#65a2b4',
-};
 
-/* #endregion */
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -43,17 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <SessionProvider session={pageProps.session}>
         <Provider store={store}>
-          <ConfigProvider theme={{
-            token: {
-              borderRadius: defaultData.borderRadius,
-              colorPrimary: defaultData.colorPrimary,
-              fontFamily: defaultData.fontFamily,
-              colorSuccess: defaultData.colorSuccess,
-              colorLink: defaultData.colorLink,
-              colorLinkActive: defaultData.colorLinkActive,
-              colorLinkHover: defaultData.colorLinkHover,
-            }
-          }}>
+          <ConfigProvider theme={{ token: antdConfigToken }}>
             <Component {...pageProps} />
           </ConfigProvider>
         </Provider>

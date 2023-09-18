@@ -17,9 +17,9 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "types": ["reflect-metadata"],
+    "types": ["reflect-metadata", "node", "jest", "@testing-library/jest-dom"],
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
