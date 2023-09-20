@@ -1,15 +1,15 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, notification } from 'antd';
 import { Provider } from "react-redux";
 import store from '../store/config/configureStore';
 import { SessionProvider } from 'next-auth/react';
 import { antdConfigToken } from '@/utils/antdConfigToken';
-
-
+import { NotificationAPIContext } from '@/contexts/notificationAPI';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [api, contextHolder] = notification.useNotification();
 
   return (
     <>
@@ -21,7 +21,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <SessionProvider session={pageProps.session}>
         <Provider store={store}>
           <ConfigProvider theme={{ token: antdConfigToken }}>
-            <Component {...pageProps} />
+            <NotificationAPIContext.Provider value={api}>
+              {contextHolder}
+              <Component {...pageProps} />
+            </NotificationAPIContext.Provider>
           </ConfigProvider>
         </Provider>
       </SessionProvider>

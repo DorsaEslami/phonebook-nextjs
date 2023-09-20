@@ -3,14 +3,10 @@ import { Session } from "next-auth";
 import { getSession, signOut } from "next-auth/react";
 
 
-const axios = (isThisClientRequest: boolean = true): AxiosInstance => {
+const axios = (): AxiosInstance => {
 
   const axiosInstance = originalAxios.create();
   axiosInstance.interceptors.request.use(async function (config: any) {
-    var session: Session | null = isThisClientRequest ? await getSession() : null;
-    if (session && !session.user.token) {
-      signOut({ redirect: true, callbackUrl: '/' });
-    }
     config.headers.accept = 'text/plain';
     config.headers['Content-Type'] = 'application/json';
     return config;

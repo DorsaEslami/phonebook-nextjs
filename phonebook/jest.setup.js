@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
-
+jest.mock('next-auth/react');
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({

@@ -1,14 +1,15 @@
 /* #region  [- import -] */
-import { notification } from "antd";
-import { NotificationPlacement } from "antd/es/notification/interface";
+import { NotificationInstance, NotificationPlacement } from "antd/es/notification/interface";
 import Styles from '../../../styles/components/shared/notification/notification.module.css';
 import { CheckOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-import { ReactNode, } from "react";
+import { ReactNode, useContext, } from "react";
+import { notificationAPIContext } from "@/contexts/notificationAPI";
 /* #endregion */
 
 /* #region [- types & interfaces -] */
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
 interface IProps {
+  api: NotificationInstance | undefined,
   message: string,
   className?: string,
   placement?: NotificationPlacement | undefined,
@@ -25,16 +26,16 @@ var icons: Icons = {
 }
 /* #endregion */
 
-const Notification = ({ message = '', className = '', placement = "bottomRight", type = 'success' }: IProps) => {
-  notification.open({
+
+const Notification = ({ api, message = '', className = '', placement = "bottomRight", type = 'success' }: IProps) => {
+
+  return api && api.open({
     message: message,
     className: Styles.container.concat(' ', className),
     placement: placement,
     type: type,
-    icon: icons[`${type}`],
+    icon: icons[`${type}`]
   });
-
-
 };
 
 export default Notification;

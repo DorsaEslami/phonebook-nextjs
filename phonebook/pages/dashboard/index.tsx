@@ -27,7 +27,7 @@ interface props {
 /* #region [- getServerSideProps -] */
 export const getStaticProps: GetStaticProps = async () => {
   const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
-  var response = await contactService.getContact(false);
+  var response = await contactService.getContact();
   var { users } = response;
   return { props: { contactsList: users } }
 }

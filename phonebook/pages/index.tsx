@@ -1,13 +1,15 @@
 /* #region  [- import -] */
 import Head from 'next/head'
 import { Form, Col, Input, Button } from "antd";
-import { useEffect, useState, } from "react"
+import { useContext, useEffect, useState, } from "react"
 import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import Image from 'next/image'
 import loginImage from '../public/img/login.png'
+import { NotificationAPIContext } from '@/contexts/notificationAPI';
+import { NotificationInstance } from 'antd/es/notification/interface';
 /* #endregion */
 
 const Login = (): JSX.Element => {
@@ -16,6 +18,7 @@ const Login = (): JSX.Element => {
   const router = useRouter();
   const [form] = Form.useForm();
   var [submitButtonText, setSubmitButtonTest] = useState<string>('Sign in');
+  const notificationAPI: NotificationInstance | undefined = useContext(NotificationAPIContext);
   /* #endregion */
 
   /* #region [- setFieldsValue -] */
@@ -36,13 +39,13 @@ const Login = (): JSX.Element => {
       password: fieldsValue.password,
       redirect: false,
     });
-    if (result?.status) {
+    if (result?.status === 200) {
       router.push('/dashboard');
-      Notification({ message: 'Welcome to phonebook app.', type: 'success' });
+      Notification({ api: notificationAPI, message: 'Welcome to phonebook app.', type: 'success' });
     }
     else {
       setSubmitButtonTest('Sign in');
-      Notification({ message: 'Something went wrong!', type: 'error' });
+      Notification({ api: notificationAPI, message: 'Something went wrong!', type: 'error' });
     }
   }
   /* #endregion */

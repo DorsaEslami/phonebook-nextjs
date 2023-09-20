@@ -26,10 +26,10 @@ export class ContactService implements IContactService {
     }
   }
 
-  getContact = async (isThisClientRequest?: boolean): Promise<ContactOutputDTO> => {
+  getContact = async (): Promise<ContactOutputDTO> => {
     try {
       var url = 'https://dummyjson.com/users';
-      var result = await axios(isThisClientRequest).get<ContactOutputDTO>(url);
+      var result = await axios().get<ContactOutputDTO>(url);
       return result.data;
     } catch (error) {
       throw new Error("Something went wrong while fetching data");

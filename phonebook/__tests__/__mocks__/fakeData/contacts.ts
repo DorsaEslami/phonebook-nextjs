@@ -7,7 +7,7 @@ export const contactsList: ContactOutputDTO = {
       firstName: "Terry",
       lastName: "Medhurst",
       age: 50,
-      gender: "male",
+      gender: "female",
       email: "atuny0@sohu.com",
       phone: "+63 791 675 8914",
       image: "https://robohash.org/hicveldicta.png"

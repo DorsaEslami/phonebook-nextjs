@@ -1,10 +1,13 @@
-import { act, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../__utils__/renderWithProvider';
 import Login from '@/pages';
-import mockRouter from 'next-router-mock';
 import { createServer } from '../__utils__/server';
 import { SuccessfulLogin } from '../__mocks__/handlers';
+import mockRouter from 'next-router-mock';
+import { SuccessfulSignIn, FailedSignIn } from '../__mocks__/mockedSignIn';
+
+
 
 test('login page items are displayed', () => {
   renderWithProviders(<Login />);
@@ -81,10 +84,22 @@ describe('signin', () => {
     await userEvent.click(signinButton);
     expect(screen.queryByRole('button', { name: /Processing/i })).toBeNull();
   });
-  test.skip('signin on valid inputs', async () => {
+  test('signin on valid inputs and response status:200', async () => {
+    mockRouter.push('/');
     renderWithProviders(<Login />);
+    SuccessfulSignIn();
     await userEvent.click(screen.getByRole('button', { name: /sign in/i }));
-    expect(screen.getByRole('button', { name: /Processing.../i })).toBeInTheDocument();
+    expect(screen.getByText(/Processing.../i)).toBeInTheDocument();
+    expect(await screen.findByText(/Welcome to phonebook app./i)).toBeInTheDocument();
+    expect(mockRouter).toMatchObject({ pathname: '/dashboard' });
   })
-
+  test('signin on valid inputs and response status:400', async () => {
+    mockRouter.push('/');
+    renderWithProviders(<Login />);
+    FailedSignIn();
+    await userEvent.click(screen.getByRole('button', { name: /sign in/i }));
+    expect(screen.getByRole('button', { name: /sign in/i })).toBeInTheDocument();
+    expect(await screen.findByText(/Something went wrong!/i)).toBeInTheDocument();
+    expect(mockRouter).toMatchObject({ pathname: '/' });
+  })
 })

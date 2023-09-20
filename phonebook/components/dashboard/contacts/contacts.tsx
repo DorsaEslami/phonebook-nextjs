@@ -3,7 +3,7 @@ import Styles from '../../../styles/components/dashboard/contacts/contacts.modul
 import { Button, Card, Avatar, Input, Drawer, Modal, Form, InputNumber, Radio, Space } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, FileSearchOutlined } from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from "../../../store/config/configureStore";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { getContact, getFilteredContacts, } from '../../../store/reducers/contactAction';
 import { Users } from '../../../dtos/contactOutputDTO';
 import Notification from '../../../components/shared/notification/notification';
@@ -14,6 +14,8 @@ import container, { TYPES } from "../../../inversify.config";
 import { ContactDeleteOutputDTO } from '../../../dtos/contactDeleteOutputDTO';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { NotificationInstance } from 'antd/es/notification/interface';
+import { NotificationAPIContext } from '@/contexts/notificationAPI';
 const { Meta } = Card;
 const { Search } = Input;
 /* #endregion */
@@ -25,6 +27,7 @@ const Contacts = (): JSX.Element => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();
+  const notificationAPI: NotificationInstance | undefined = useContext(NotificationAPIContext);
   const contactsList = useAppSelector<Users[]>((state) => state.contact.contactsList);
   const [id, setId] = useState<number | undefined>(undefined);
   const [fullName, setFullName] = useState<string>('');
@@ -81,13 +84,13 @@ const Contacts = (): JSX.Element => {
       const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
       var response: ContactDeleteOutputDTO = await contactService.deleteContact(id);
       if (response.isDeleted) {
-        Notification({ message: 'Deleted successfully', type: 'success' });
+        Notification({ api: notificationAPI, message: 'Deleted successfully', type: 'success' });
         setId(undefined);
         setFullName('');
         setIsDeleteModalOpen(false);
       }
       else {
-        Notification({ message: 'Something went wrong', type: 'error' });
+        Notification({ api: notificationAPI, message: 'Something went wrong', type: 'error' });
       }
 
     }
@@ -100,13 +103,13 @@ const Contacts = (): JSX.Element => {
     const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
     var response: Users = await contactService.postContact(data);
     if (response) {
-      Notification({ message: 'Added successfully', type: 'success' });
+      Notification({ api: notificationAPI, message: 'Added successfully', type: 'success' });
       setIsDrawerOpen(false);
       setIsInformModalOpen(true);
       form.resetFields();
     }
     else {
-      Notification({ message: 'Something went wrong', type: 'error' });
+      Notification({ api: notificationAPI, message: 'Something went wrong', type: 'error' });
     }
   }
   /* #endregion */
@@ -117,14 +120,14 @@ const Contacts = (): JSX.Element => {
     const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
     var response: Users = await contactService.putContact(data);
     if (response) {
-      Notification({ message: 'Edited successfully', type: 'success' });
+      Notification({ api: notificationAPI, message: 'Edited successfully', type: 'success' });
       setId(undefined);
       setIsDrawerOpen(false);
       setIsInformModalOpen(true);
       form.resetFields();
     }
     else {
-      Notification({ message: 'Something went wrong', type: 'error' });
+      Notification({ api: notificationAPI, message: 'Something went wrong', type: 'error' });
     }
   }
   /* #endregion */
