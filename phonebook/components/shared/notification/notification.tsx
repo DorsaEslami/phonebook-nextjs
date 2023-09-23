@@ -3,7 +3,7 @@ import { NotificationInstance, NotificationPlacement } from "antd/es/notificatio
 import Styles from '../../../styles/components/shared/notification/notification.module.css';
 import { CheckOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { ReactNode, useContext, } from "react";
-import { notificationAPIContext } from "@/contexts/notificationAPI";
+import { NotificationAPIContext } from "@/contexts/notificationAPI";
 /* #endregion */
 
 /* #region [- types & interfaces -] */
