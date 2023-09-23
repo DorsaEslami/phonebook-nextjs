@@ -3,7 +3,7 @@ import { LoginOutputDTO } from "./dtos/loginOutputDTO";
 declare module "next-auth" {
   interface User {
     id: number | undefined = undefined;
-    Username: string = '';
+    username: string = '';
     firstName: string = '';
     lastName: string = '';
     gender: string | undefined = undefined;

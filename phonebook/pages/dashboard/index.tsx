@@ -3,7 +3,7 @@ import React, { useState, Suspense, useEffect } from "react";
 import Styles from '../../styles/components/dashboard/dashboard.module.scss';
 import Menu from '../../components/dashboard/menu/menu';
 import DashboardLoading from '../../components/dashboard/dashboardLoading/dashboardLoading';
-import { SelectInfo } from 'rc-menu/lib/interface';
+import { MenuInfo } from 'rc-menu/lib/interface';
 import container, { TYPES } from "@/inversify.config";
 import { IContactService } from "@/services/interfaces/IContactService";
 import { GetStaticProps } from "next";
@@ -27,7 +27,7 @@ interface props {
 /* #region [- getServerSideProps -] */
 export const getStaticProps: GetStaticProps = async () => {
   const contactService: IContactService = container.get<IContactService>(TYPES.IContactService);
-  var response = await contactService.getContact(false);
+  var response = await contactService.getContact();
   var { users } = response;
   return { props: { contactsList: users } }
 }
@@ -46,8 +46,8 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
   }, [])
   /* #endregion */
 
-  /* #region  [- onClickMenueItem -] */
-  const onClickMenueItem = (info: SelectInfo) => {
+  /* #region  [- onSelectMenueItem -] */
+  const onSelectMenueItem = (info: MenuInfo) => {
     switch (info.key) {
       case 'home':
         setContent(<DefaultContent contactsList={contactsList} />);
@@ -76,7 +76,7 @@ const Dashboard = ({ contactsList = [] }: props): JSX.Element => {
         <title>Phonebook App</title>
       </Head>
       <main className={Styles.main}>
-        <Menu onClickMenueItem={onClickMenueItem} />
+        <Menu onSelectMenueItem={onSelectMenueItem} />
         <Suspense fallback={<DashboardLoading />}>
           <section className={Styles.section}>{content}</section>
         </Suspense>

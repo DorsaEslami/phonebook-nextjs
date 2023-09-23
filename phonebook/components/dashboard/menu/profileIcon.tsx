@@ -13,7 +13,7 @@ const ProfileIcon: FC = (): JSX.Element => {
     </svg>
   );
   const ProfileAntDIcon = (props: Partial<CustomIconComponentProps>) => (
-    <Icon component={ProfileIconSVG} />
+    <Icon component={ProfileIconSVG} role="profileIcon" />
   );
   /* #region  [- return -] */
   return (<ProfileAntDIcon />)

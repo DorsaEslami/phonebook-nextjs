@@ -17,10 +17,10 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "types": ["reflect-metadata"],
+    "types": ["reflect-metadata", "node", "jest", "@testing-library/jest-dom"],
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.setup.js"],
   "exclude": ["node_modules"]
 }

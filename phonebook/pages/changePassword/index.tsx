@@ -5,7 +5,7 @@ import ChangePasswordImage from '../../public/img/change-password.jpg';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { Button, Form, Input } from 'antd';
-interface Props {
+export interface Props {
   titles: {
     header: string,
     body: string,

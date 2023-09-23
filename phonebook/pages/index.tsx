@@ -1,13 +1,15 @@
 /* #region  [- import -] */
 import Head from 'next/head'
 import { Form, Col, Input, Button } from "antd";
-import { useEffect, useState, } from "react"
+import { useContext, useEffect, useState, } from "react"
 import Styles from '../styles/components/login/login.module.scss';
 import Notification from "../components/shared/notification/notification";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import Image from 'next/image'
 import loginImage from '../public/img/login.png'
+import { NotificationAPIContext } from '@/contexts/notificationAPI';
+import { NotificationInstance } from 'antd/es/notification/interface';
 /* #endregion */
 
 const Login = (): JSX.Element => {
@@ -16,6 +18,7 @@ const Login = (): JSX.Element => {
   const router = useRouter();
   const [form] = Form.useForm();
   var [submitButtonText, setSubmitButtonTest] = useState<string>('Sign in');
+  const notificationAPI: NotificationInstance | undefined = useContext(NotificationAPIContext);
   /* #endregion */
 
   /* #region [- setFieldsValue -] */
@@ -36,13 +39,13 @@ const Login = (): JSX.Element => {
       password: fieldsValue.password,
       redirect: false,
     });
-    if (result?.status) {
+    if (result?.status === 200) {
       router.push('/dashboard');
-      Notification({ message: 'Welcome to phonebook app.', type: 'success' });
+      Notification({ api: notificationAPI, message: 'Welcome to phonebook app.', type: 'success' });
     }
     else {
       setSubmitButtonTest('Sign in');
-      Notification({ message: 'Something went wrong!', type: 'error' });
+      Notification({ api: notificationAPI, message: 'Something went wrong!', type: 'error' });
     }
   }
   /* #endregion */
@@ -65,9 +68,9 @@ const Login = (): JSX.Element => {
         </Col>
         <Col xs={0} sm={0} md={0} lg={0} xl={1} xxl={2}></Col>
         <Col xs={24} sm={24} md={24} lg={12} xl={11} xxl={11} className={Styles.formCol}>
-          <p className={Styles.welcomeTitle}>Welcome to Phonebook app</p>
+          <p className={Styles.welcomeTitle} role='welcome-title'>Welcome to Phonebook app</p>
           <Button className={Styles.sourceCodeButton} type='link' href='https://github.com/DorsaEslami/phonebook-nextjs' target='_blank'>Source Code</Button>
-          <Form className={Styles.form} onFinish={login} form={form}  >
+          <Form className={Styles.form} onFinish={login} form={form} role='login-form'>
             <Form.Item
               label="Username"
               name="username"
@@ -104,7 +107,7 @@ const Login = (): JSX.Element => {
               ]}
               hasFeedback
             >
-              <Input.Password allowClear={true} />
+              <Input.Password allowClear={true} role='password-textbox' />
             </Form.Item>
             <Button type="primary" htmlType="submit" className={Styles.submitButton}>{submitButtonText}</Button>
 

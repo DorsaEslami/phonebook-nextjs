@@ -54,13 +54,13 @@ const DefaultContent = ({ contactsList }: props): JSX.Element => {
       <Col className={Styles.pieChartCol} xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
         <section className={Styles.cardsSection}>
           <Card title="Total Contacts" className={Styles.totalContactsCard}>
-            <p>{Object.keys(contactsList).length}</p>
+            <p role='total-contacts'>{Object.keys(contactsList).length}</p>
           </Card>
           <Card title="Female Contacts" className={Styles.totalContactsCard}>
-            <p>{Object.keys(contactsList.filter((item: any) => item.gender === 'female')).length}</p>
+            <p role='female-contacts'>{Object.keys(contactsList.filter((item: any) => item.gender === 'female')).length}</p>
           </Card>
           <Card title="Male Contacts" className={Styles.totalContactsCard}>
-            <p>{Object.keys(contactsList.filter((item: any) => item.gender === 'male')).length}</p>
+            <p role='male-contacts'>{Object.keys(contactsList.filter((item: any) => item.gender === 'male')).length}</p>
           </Card>
         </section>
         <VictoryPie data={pieChartData} colorScale={["#eee359", "#ff6361"]} labelRadius={70} />

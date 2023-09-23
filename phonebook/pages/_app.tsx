@@ -1,38 +1,15 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, notification } from 'antd';
 import { Provider } from "react-redux";
 import store from '../store/config/configureStore';
-import { Montserrat } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-})
-/* #region  [- defaultData -] */
-type ThemeData = {
-  borderRadius: number;
-  colorPrimary: string;
-  fontFamily: string;
-  colorSuccess: string;
-  colorLink: string;
-  colorLinkActive: string;
-  colorLinkHover: string;
-};
-const defaultData: ThemeData = {
-  borderRadius: 6,
-  colorPrimary: '#127591',
-  fontFamily: montserrat.style.fontFamily,
-  colorSuccess: '#127591',
-  colorLink: '#127591',
-  colorLinkActive: '#0b6d89',
-  colorLinkHover: '#65a2b4',
-};
-
-/* #endregion */
+import { antdConfigToken } from '@/utils/antdConfigToken';
+import { NotificationAPIContext } from '@/contexts/notificationAPI';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [api, contextHolder] = notification.useNotification();
 
   return (
     <>
@@ -43,18 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <SessionProvider session={pageProps.session}>
         <Provider store={store}>
-          <ConfigProvider theme={{
-            token: {
-              borderRadius: defaultData.borderRadius,
-              colorPrimary: defaultData.colorPrimary,
-              fontFamily: defaultData.fontFamily,
-              colorSuccess: defaultData.colorSuccess,
-              colorLink: defaultData.colorLink,
-              colorLinkActive: defaultData.colorLinkActive,
-              colorLinkHover: defaultData.colorLinkHover,
-            }
-          }}>
-            <Component {...pageProps} />
+          <ConfigProvider theme={{ token: antdConfigToken }}>
+            <NotificationAPIContext.Provider value={api}>
+              {contextHolder}
+              <Component {...pageProps} />
+            </NotificationAPIContext.Provider>
           </ConfigProvider>
         </Provider>
       </SessionProvider>

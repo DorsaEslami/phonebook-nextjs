@@ -2,19 +2,22 @@
 import { useAppSelector } from '@/store/config/configureStore';
 import Styles from '../../../styles/components/dashboard/contacts/details/details.module.scss'
 import { Users } from '@/dtos/contactOutputDTO';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { ParsedUrlQuery } from 'querystring';
-import { Button, Descriptions } from 'antd';
+import { Descriptions } from 'antd';
 import UserImage from '../../../public/img/user.png'
 import Link from 'next/link';
 import Notification from "../../../components/shared/notification/notification";
+import { NotificationAPIContext } from '@/contexts/notificationAPI';
+import { NotificationInstance } from 'antd/es/notification/interface';
 /* #endregion */
 
 const ContactDetail = () => {
 
   /* #region [- variables -] */
+  const notificationAPI: NotificationInstance | undefined = useContext(NotificationAPIContext);
   const contactsList = useAppSelector<Users[]>((state) => state.contact.contactsList);
   const router = useRouter();
   var defaultContact: Users = {
@@ -43,11 +46,11 @@ const ContactDetail = () => {
         setContact(filteredContact[0]);
       }
       else {
-        Notification({ message: 'Contact not found!', type: 'error' });
+        Notification({ api: notificationAPI, message: 'Contact not found!', type: 'error' });
       }
     }
     else {
-      Notification({ message: 'Something went wrong!', type: 'error' });
+      Notification({ api: notificationAPI, message: 'Something went wrong!', type: 'error' });
     }
   }, [])
   /* #endregion */

@@ -1,7 +1,7 @@
 
 export class LoginOutputDTO {
   id: number | undefined = undefined;
-  Username: string = '';
+  username: string = '';
   firstName: string = '';
   lastName: string = '';
   gender: string | undefined = undefined;
